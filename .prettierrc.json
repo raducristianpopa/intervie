@@ -1,0 +1,13 @@
+{
+	"pluginSearchDirs": ["."],
+	"semi": true,
+	"printWidth": 100,
+	"useTabs": true,
+	"tabWidth": 2,
+	"trailingComma": "none",
+	"singleQuote": true,
+	"quoteProps": "consistent",
+	"importOrder": ["^react$", "^next$", "^react/(.*)$", "^next/(.*)$", "^[./]"],
+	"importOrderSeparation": true,
+	"importOrderSortSpecifiers": true
+}
