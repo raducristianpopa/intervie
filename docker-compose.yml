@@ -1,0 +1,18 @@
+version: '3.1'
+
+services:
+  postgres:
+    container_name: 'intervie-postgres'
+    restart: unless-stopped
+    image: 'postgres:latest'
+    ports:
+      # NOTE: To not overlap a Postgres database running on local we start the Postgres
+      # on another port.
+      - '15432:5432'
+    volumes:
+      - 'pgdata:/var/lib/postgresql/data/'
+    environment:
+      POSTGRES_PASSWORD: postgres
+
+volumes:
+  pgdata: {}
