@@ -3,6 +3,7 @@ import { GraphQLSchema, lexicographicSortSchema, printSchema } from 'graphql';
 import path from 'path';
 
 import { builder } from './builder';
+import './resolvers';
 
 const writeSchema = (schema: GraphQLSchema) => {
 	const schemaAsString = printSchema(lexicographicSortSchema(schema));

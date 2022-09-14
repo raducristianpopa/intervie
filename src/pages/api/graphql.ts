@@ -1,4 +1,3 @@
-import { ExecutionResult, GraphQLError } from 'graphql';
 import {
 	getGraphQLParameters,
 	processRequest,
