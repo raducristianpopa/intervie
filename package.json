@@ -12,7 +12,7 @@
 		"prepare": "husky install",
 		"preinstall": "npx only-allow pnpm",
 		"typecheck": "tsc --noEmit",
-		"dev": "concurrently -c green.bold,blue.bold,red.bold,white.bold 'pnpm:dev:docker' 'pnpm:dev:next' 'pnpm:dev:codegen' 'pnpm:studio'",
+		"dev": "concurrently -c green.bold,blue.bold,red.bold,white.bold 'pnpm:dev:docker' 'pnpm:dev:next' 'pnpm:dev:codegen' 'pnpm:prisma:studio'",
 		"codegen": "pnpm codegen:schema && pnpm codegen:graphql",
 		"prettier": "pnpm prettier:format && pnpm prettier:check",
 		"build": "pnpm prisma:generate && next build",
@@ -21,6 +21,7 @@
 		"dev:docker": "docker compose up",
 		"dev:next": "next dev",
 		"dev:codegen": "pnpm run codegen:graphql -- watch",
+		"prisma:studio": "prisma studio",
 		"prisma:migrate": "prisma migrate dev",
 		"prisma:generate": "prisma generate",
 		"codegen:schema": "dotenv -- ts-node --transpile-only -r tsconfig-paths/register ./src/graphql/index.ts",
@@ -30,6 +31,7 @@
 		"prettier:check": "prettier --config .prettierrc.cli.js --check \"**/*.{js,jsx,ts,tsx,html,scss,json,yml,md}\""
 	},
 	"dependencies": {
+		"@apollo/client": "^3.6.9",
 		"@next/bundle-analyzer": "^12.3.0",
 		"@pothos/core": "^3.21.0",
 		"@pothos/plugin-errors": "^3.7.0",
@@ -41,6 +43,7 @@
 		"autoprefixer": "^10.4.10",
 		"date-fns": "^2.29.3",
 		"graphql": "^16.6.0",
+		"graphql-helix": "^1.13.0",
 		"hash-wasm": "^4.9.0",
 		"iron-session": "^6.2.1",
 		"next": "12.3.0",

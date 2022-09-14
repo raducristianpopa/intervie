@@ -1,7 +1,3 @@
-import type { NextPage } from 'next';
-
-const Home: NextPage = () => {
-	return <div className="text-red-100 bg-black">Intervie</div>;
+export default () => {
+	return <div className="text-red-600">Homepage</div>;
 };
-
-export default Home;

@@ -4,7 +4,7 @@ import { IronSession } from 'iron-session';
 import SchemaBuilder from '@pothos/core';
 import ErrorsPlugin from '@pothos/plugin-errors';
 import PrismaPlugin from '@pothos/plugin-prisma';
-import PrismaTypes from '@pothos/plugin-prisma/';
+import type PrismaTypes from '@pothos/plugin-prisma/generated';
 import ScopeAuthPlugin from '@pothos/plugin-scope-auth';
 import SimpleObjectsPlugin from '@pothos/plugin-simple-objects';
 import ValidationPlugin from '@pothos/plugin-validation';
@@ -37,7 +37,7 @@ export const builder = new SchemaBuilder<{
 	// argument can be set to `required: false`.
 	DefaultInputFieldRequiredness: true;
 	// We are passing our Prisma generated types
-	PrismaTypes: typeof PrismaTypes;
+	PrismaTypes: PrismaTypes;
 	Context: Context;
 	Scalars: {
 		// We modify the types for the `ID` type to denote that it's always a string when it comes in.

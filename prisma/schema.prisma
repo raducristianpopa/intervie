@@ -8,6 +8,11 @@ generator client {
   previewFeatures = ["fullTextSearch", "interactiveTransactions"]
 }
 
+// This generator is used to provide type information to Pothos.
+generator pothos {
+  provider = "prisma-pothos-types"
+}
+
 model User {
   pk Int    @id @default(autoincrement())
   id String @unique @default(uuid()) @db.Uuid
