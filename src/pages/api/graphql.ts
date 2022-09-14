@@ -42,7 +42,7 @@ const handler: NextApiHandler = async (req, res) => {
 		};
 
 		if (shouldRenderGraphiQL(request)) {
-			res.setHeader('Content-Type', 'text-html');
+			res.setHeader('Content-Type', 'text/html');
 			res.send(
 				renderGraphiQL({
 					endpoint: '/api/graphql',
@@ -76,3 +76,5 @@ const handler: NextApiHandler = async (req, res) => {
 		res.end(String(err));
 	}
 };
+
+export default handler;
