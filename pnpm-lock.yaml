@@ -20,11 +20,13 @@ specifiers:
   '@types/react': 18.0.20
   '@types/react-dom': 18.0.6
   autoprefixer: ^10.4.10
+  date-fns: ^2.29.3
   dotenv: ^16.0.2
   dotenv-cli: ^6.0.0
   eslint: 8.23.1
   eslint-config-next: 12.3.0
   graphql: ^16.6.0
+  hash-wasm: ^4.9.0
   iron-session: ^6.2.1
   next: 12.3.0
   postcss: ^8.4.16
@@ -35,6 +37,7 @@ specifiers:
   ts-node: ^10.9.1
   tsconfig-paths: ^4.1.0
   typescript: 4.8.3
+  zod: ^3.19.1
 
 dependencies:
   '@pothos/core': 3.21.0_graphql@16.6.0
@@ -45,13 +48,16 @@ dependencies:
   '@pothos/plugin-validation': 3.7.0_tajkor6keznuoiibdzg5ernjuq
   '@prisma/client': 4.3.1_prisma@4.3.1
   autoprefixer: 10.4.10_postcss@8.4.16
+  date-fns: 2.29.3
   graphql: 16.6.0
+  hash-wasm: 4.9.0
   iron-session: 6.2.1_next@12.3.0
   next: 12.3.0_65aaefrptgalbi6a2fwpzxfmae
   postcss: 8.4.16
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   tailwindcss: 3.1.8_57znarxsqwmnneadci5z5fd5gu
+  zod: 3.19.1
 
 devDependencies:
   '@graphql-codegen/cli': 2.12.0_t64qm2wqp6tpfofos3luvh66gu
@@ -2425,6 +2431,11 @@ packages:
     resolution: {integrity: sha512-qTcEYLen3r7ojZNgVUaRggOI+KM7jrKxXeSHhogh/TWxYMeONEMqY+hmkobiYQozsGIyg9OYVzO4ZIfoB4I0pQ==}
     dev: true
 
+  /date-fns/2.29.3:
+    resolution: {integrity: sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==}
+    engines: {node: '>=0.11'}
+    dev: false
+
   /debounce/1.2.1:
     resolution: {integrity: sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug==}
     dev: true
@@ -3299,6 +3310,10 @@ packages:
     engines: {node: '>= 0.4.0'}
     dependencies:
       function-bind: 1.1.1
+
+  /hash-wasm/4.9.0:
+    resolution: {integrity: sha512-7SW7ejyfnRxuOc7ptQHSf4LDoZaWOivfzqw+5rpcQku0nHfmicPKE51ra9BiRLAmT8+gGLestr1XroUkqdjL6w==}
+    dev: false
 
   /header-case/2.0.4:
     resolution: {integrity: sha512-H/vuk5TEEVZwrR0lp2zed9OCo1uAILMlx0JEMgC26rzyJJ3N1v6XkwHHXJQdR2doSjcGPM6OKPYoJgf0plJ11Q==}

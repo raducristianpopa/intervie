@@ -19,7 +19,8 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  Session Session[]
+  Session       Session[]
+  PasswordReset PasswordReset[]
 }
 
 model Session {
@@ -27,6 +28,18 @@ model Session {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   expiresAt DateTime @default(now())
+  isExpired Boolean  @default(false)
+
+  user   User @relation(fields: [userPk], references: [pk])
+  userPk Int
+}
+
+model PasswordReset {
+  id String @id @default(uuid()) @db.Uuid
+
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+  isExpired Boolean  @default(false)
 
   user   User @relation(fields: [userPk], references: [pk])
   userPk Int
