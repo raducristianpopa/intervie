@@ -1,1 +1,5 @@
+.next
+.vscode
+.husky
 src/**/__generated__/**
+

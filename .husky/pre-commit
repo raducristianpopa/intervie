@@ -2,4 +2,6 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 pnpm typecheck
+pnpm prettier:format
+pnpm prettier:check
 pnpm lint
