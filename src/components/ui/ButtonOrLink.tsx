@@ -17,7 +17,7 @@ export interface Props extends ButtonOrLinkProps {
  * page-to-page transitions.
  */
 export const ButtonOrLink = forwardRef<HTMLButtonElement | HTMLAnchorElement, Props>(
-	({ href, preserveRedirect, ...props }, ref: any) => {
+	function ButtonOrLink({ href, preserveRedirect, ...props }, ref: any) {
 		const router = useRouter();
 		const isLink = typeof href !== 'undefined';
 

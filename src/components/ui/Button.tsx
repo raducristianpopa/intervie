@@ -5,7 +5,7 @@ import { ReactNode, forwardRef } from 'react';
 import { Transition } from '@headlessui/react';
 
 import { ButtonOrLink, Props as ButtonOrLinkProps } from './ButtonOrLink';
-import Spinner from './Spinner';
+import { Spinner } from './Spinner';
 
 const button = cva(
 	[
@@ -93,29 +93,30 @@ export interface ButtonProps extends VariantProps<typeof button>, ButtonOrLinkPr
 	isLoading?: boolean;
 }
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-	({ variant, size, isLoading, leftIcon, rightIcon, children, ...props }, ref) => {
-		return (
-			<ButtonOrLink className={button({ variant, size })} {...props} ref={ref}>
-				<Transition
-					show={!!isLoading}
-					enter="transition-all"
-					enterFrom="w-0 opacity-0"
-					enterTo="w-6 opacity-100"
-					leave="transition-all"
-					leaveFrom="w-6 opacity-100"
-					leaveTo="w-0 opacity-0"
-				>
-					<div className="mr-2">
-						<Spinner />
-					</div>
-				</Transition>
-				<div className="flex items-center justify-center gap-2">
-					{!isLoading && leftIcon && <div>{leftIcon}</div>}
-					<div>{isLoading ? 'Loading' : children}</div>
-					{!isLoading && rightIcon && <div>{rightIcon}</div>}
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
+	{ variant, size, isLoading, leftIcon, rightIcon, children, ...props },
+	ref
+) {
+	return (
+		<ButtonOrLink className={button({ variant, size })} {...props} ref={ref}>
+			<Transition
+				show={!!isLoading}
+				enter="transition-all"
+				enterFrom="w-0 opacity-0"
+				enterTo="w-6 opacity-100"
+				leave="transition-all"
+				leaveFrom="w-6 opacity-100"
+				leaveTo="w-0 opacity-0"
+			>
+				<div className="mr-2">
+					<Spinner />
 				</div>
-			</ButtonOrLink>
-		);
-	}
-);
+			</Transition>
+			<div className="flex items-center justify-center gap-2">
+				{!isLoading && leftIcon && <div>{leftIcon}</div>}
+				<div>{isLoading ? 'Loading' : children}</div>
+				{!isLoading && rightIcon && <div>{rightIcon}</div>}
+			</div>
+		</ButtonOrLink>
+	);
+});
