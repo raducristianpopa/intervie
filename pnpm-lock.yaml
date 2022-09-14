@@ -6,6 +6,7 @@ specifiers:
   '@graphql-codegen/near-operation-file-preset': ^2.4.1
   '@graphql-codegen/typescript': ^2.7.3
   '@graphql-codegen/typescript-operations': ^2.5.3
+  '@headlessui/react': ^1.7.1
   '@next/bundle-analyzer': ^12.3.0
   '@pothos/core': ^3.21.0
   '@pothos/plugin-errors': ^3.7.0
@@ -22,6 +23,8 @@ specifiers:
   '@types/react': 18.0.20
   '@types/react-dom': 18.0.6
   autoprefixer: ^10.4.10
+  class-variance-authority: ^0.2.3
+  clsx: ^1.2.1
   concurrently: ^7.4.0
   date-fns: ^2.29.3
   dotenv: ^16.0.2
@@ -34,6 +37,7 @@ specifiers:
   husky: ^8.0.1
   iron-session: ^6.2.1
   next: 12.3.0
+  phosphor-react: ^1.4.1
   postcss: ^8.4.16
   prisma: ^4.3.1
   react: 18.2.0
@@ -46,6 +50,7 @@ specifiers:
 
 dependencies:
   '@apollo/client': 3.6.9_onqnqwb3ubg5opvemcqf7c2qhy
+  '@headlessui/react': 1.7.1_biqbaboplfbrettd7655fr4n2y
   '@next/bundle-analyzer': 12.3.0
   '@pothos/core': 3.21.0_graphql@16.6.0
   '@pothos/plugin-errors': 3.7.0_77drd5c75cmluqqlsobcafssve
@@ -55,12 +60,15 @@ dependencies:
   '@pothos/plugin-validation': 3.7.0_tajkor6keznuoiibdzg5ernjuq
   '@prisma/client': 4.3.1_prisma@4.3.1
   autoprefixer: 10.4.10_postcss@8.4.16
+  class-variance-authority: 0.2.3_typescript@4.8.3
+  clsx: 1.2.1
   date-fns: 2.29.3
   graphql: 16.6.0
   graphql-helix: 1.13.0_graphql@16.6.0
   hash-wasm: 4.9.0
   iron-session: 6.2.1_next@12.3.0
   next: 12.3.0_65aaefrptgalbi6a2fwpzxfmae
+  phosphor-react: 1.4.1_react@18.2.0
   postcss: 8.4.16
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -1225,6 +1233,17 @@ packages:
     dependencies:
       graphql: 16.6.0
 
+  /@headlessui/react/1.7.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-vnRlB71kvEr3y26Lm1WpCiMML8n5JcJ7jK5+vaF0hGTZFArW206j61meVemXkTOuGLhmyWe6yj3OETzsxHoryQ==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: ^16 || ^17 || ^18
+      react-dom: ^16 || ^17 || ^18
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
   /@humanwhocodes/config-array/0.10.4:
     resolution: {integrity: sha512-mXAIHxZT3Vcpg83opl1wGlVZ9xydbfZO3r5YfRSH6Gpp2J/PfdBP0wbDa2sO6/qRbcalpoevVyW6A/fI6LfeMw==}
     engines: {node: '>=10.10.0'}
@@ -2326,6 +2345,17 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
 
+  /class-variance-authority/0.2.3_typescript@4.8.3:
+    resolution: {integrity: sha512-q3VGDidOOFp5yqNpUljA8L6N78gdOPhP5oeFJPaGRnCAPRmyAw65qo+Kw2WVfKq9uiR1de7HzlcvTN871Gks/g==}
+    peerDependencies:
+      typescript: '>= 4.5.5 < 5'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      typescript: 4.8.3
+    dev: false
+
   /clean-stack/2.2.0:
     resolution: {integrity: sha512-4diC9HaTE+KRAMWhDhrGOECgWZxoevMc5TlkObMqNSsVU62PYzXZ/SMTjzyGAFF1YusgxGcSWTEXBhp0CPwQ1A==}
     engines: {node: '>=6'}
@@ -2376,6 +2406,11 @@ packages:
     resolution: {integrity: sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==}
     engines: {node: '>=0.8'}
     dev: true
+
+  /clsx/1.2.1:
+    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
+    engines: {node: '>=6'}
+    dev: false
 
   /color-convert/1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}
@@ -4442,6 +4477,15 @@ packages:
     resolution: {integrity: sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==}
     engines: {node: '>=8'}
     dev: true
+
+  /phosphor-react/1.4.1_react@18.2.0:
+    resolution: {integrity: sha512-gO5j7U0xZrdglTAYDYPACU4xDOFBTJmptrrB/GeR+tHhCZF3nUMyGmV/0hnloKjuTrOmpSFlbfOY78H39rgjUQ==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: '>=16'
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /picocolors/1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}

@@ -1,21 +1,13 @@
 scalar DateTime
 
-input LogInInput {
-  email: String!
-  password: String!
-}
-
-type Mutation {
-  login(input: LogInInput!): User!
-}
+type Mutation
 
 type Query {
-  test: User
-  viewer: User
+	viewer: User
 }
 
 type User {
-  email: String!
-  id: String!
-  name: String!
+	email: String!
+	id: String!
+	name: String!
 }

@@ -8,7 +8,7 @@ const App = ({ Component, pageProps }: AppProps & { pageProps: any }) => {
 	const client = useApollo(pageProps.initialClientState);
 	return (
 		<ApolloProvider client={client}>
-			<Component {...pageProps} />;
+			<Component {...pageProps} />
 		</ApolloProvider>
 	);
 };

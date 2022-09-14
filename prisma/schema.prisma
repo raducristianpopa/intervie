@@ -17,9 +17,13 @@ model User {
   pk Int    @id @default(autoincrement())
   id String @unique @default(uuid()) @db.Uuid
 
-  name     String @unique
-  email    String @unique
-  password String
+  name       String  @unique
+  email      String  @unique
+  password   String
+  isVerified Boolean @default(false)
+
+  registerIp String?
+  userAgent  String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -29,23 +33,105 @@ model User {
 }
 
 model Session {
-  id        String   @id @default(uuid()) @db.Uuid
+  id             String  @id @default(uuid()) @db.Uuid
+  browser        String?
+  browserVersion String?
+  os             String?
+  platform       String?
+  userAgent      String?
+
+  isExpired Boolean  @default(false)
+  expiresAt DateTime @default(now())
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  expiresAt DateTime @default(now())
-  isExpired Boolean  @default(false)
 
   user   User @relation(fields: [userPk], references: [pk])
   userPk Int
 }
 
 model PasswordReset {
-  id String @id @default(uuid()) @db.Uuid
+  id        String  @id @default(uuid()) @db.Uuid
+  isExpired Boolean @default(false)
 
   createdAt DateTime @default(now())
   expiresAt DateTime
-  isExpired Boolean  @default(false)
 
   user   User @relation(fields: [userPk], references: [pk])
   userPk Int
+}
+
+model Opening {
+  pk          Int     @id @default(autoincrement())
+  id          String  @unique @default(uuid()) @db.Uuid
+  name        String
+  description String? @db.Text
+  isArchived  Boolean @default(false)
+
+  candidates Candidate[]
+}
+
+model Candidate {
+  pk     Int     @id @default(autoincrement())
+  id     String  @unique @default(uuid()) @db.Uuid
+  name   String
+  email  String?
+  phone  String?
+  resume String?
+
+  Opening   Opening? @relation(fields: [openingPk], references: [pk], onDelete: Cascade, onUpdate: NoAction)
+  openingPk Int?
+}
+
+model Interview {
+  pk   Int    @id @default(autoincrement())
+  id   String @unique @default(uuid()) @db.Uuid
+  name String
+
+  questions     Question[]
+  PreInterview  PreInterview[]
+  PostInterview PostInterview[]
+}
+
+model PreInterview {
+  duration     Int     @db.SmallInt
+  instructions String? @db.Text
+  active       Boolean @default(true)
+
+  interview   Interview @relation(fields: [interviewPk], references: [pk], onDelete: Cascade, onUpdate: NoAction)
+  interviewPk Int       @id
+
+  @@index([interviewPk])
+}
+
+model PostInterview {
+  duration     Int     @db.SmallInt
+  instructions String? @db.Text
+  active       Boolean @default(true)
+
+  Interview   Interview @relation(fields: [interviewPk], references: [pk], onDelete: Cascade, onUpdate: NoAction)
+  interviewPk Int       @id
+
+  @@index([interviewPk])
+}
+
+model Question {
+  pk       Int     @id @default(autoincrement())
+  content  String
+  skill    String? @db.VarChar(100)
+  duration Int     @db.SmallInt
+
+  QuestionEvaluation QuestionEvaluation[]
+
+  interviewId Interview @relation(fields: [interviewPk], references: [pk], onDelete: Cascade, onUpdate: NoAction)
+  interviewPk Int
+}
+
+model QuestionEvaluation {
+  content String @db.Text
+
+  Question   Question? @relation(fields: [questionPk], references: [pk], onDelete: Cascade, onUpdate: NoAction)
+  questionPk Int
+
+  @@id([questionPk])
 }

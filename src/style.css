@@ -2,3 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @tailwind variants;
+
+body {
+  @apply relative min-h-full max-w-[100vw] bg-black
+}
