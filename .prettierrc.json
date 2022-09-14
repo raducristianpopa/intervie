@@ -7,7 +7,7 @@
 	"trailingComma": "none",
 	"singleQuote": true,
 	"quoteProps": "consistent",
-	"importOrder": ["^react$", "^next$", "^react/(.*)$", "^next/(.*)$", "^[./]"],
+	"importOrder": ["^react$", "^next$", "^react/(.*)$", "^next/(.*)$", "^@(.*)$", "^[./]"],
 	"importOrderSeparation": true,
 	"importOrderSortSpecifiers": true
 }
