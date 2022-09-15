@@ -4,5 +4,5 @@
 @tailwind variants;
 
 body {
-  @apply relative min-h-full max-w-[100vw] bg-black
+  @apply relative min-h-full max-w-[100vw] bg-black text-white
 }

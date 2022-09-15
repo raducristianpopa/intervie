@@ -1,5 +1,3 @@
-export const Landing = () => {
-	return <div className="text-red-600">LANDING PAGE</div>;
-};
+import Landing from '@components/Landing';
 
 export default Landing;
