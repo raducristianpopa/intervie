@@ -32,6 +32,8 @@
 	},
 	"dependencies": {
 		"@apollo/client": "^3.6.9",
+		"@commitlint/cli": "^17.1.2",
+		"@commitlint/config-conventional": "^17.1.0",
 		"@headlessui/react": "^1.7.1",
 		"@next/bundle-analyzer": "^12.3.0",
 		"@pothos/core": "^3.21.0",
