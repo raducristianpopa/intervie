@@ -76,12 +76,7 @@ const Header: React.FC<{}> = () => {
 									Login
 								</Link>
 							)}
-							<Button
-								className="ml-6"
-								href="/signup"
-								aria-label="Sign up"
-								variant={isLoginPage ? 'default_muted' : 'default'}
-							>
+							<Button className="ml-6" href="/signup" aria-label="Sign up">
 								Sign up
 							</Button>
 						</div>
