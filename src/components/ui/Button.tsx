@@ -1,4 +1,5 @@
 import { VariantProps, cva } from 'class-variance-authority';
+import clsx from 'clsx';
 
 import { ReactNode, forwardRef } from 'react';
 
@@ -20,7 +21,7 @@ const button = cva(
 		'duration-150',
 		'overflow-hidden',
 		'disabled:opacity-75',
-		'disabled:cursor-not-allowed'
+		'disabled:pointer-events-none'
 	],
 	{
 		variants: {
@@ -30,14 +31,14 @@ const button = cva(
 					'bg-black',
 					'text-white',
 					'border-black',
-					'enabled:hover:bg-white',
-					'enabled:hover:text-black',
+					'hover:bg-white',
+					'hover:text-black',
 					// Dark theme
 					'dark:bg-white',
 					'dark:text-black',
 					'dark:border-white',
-					'dark:enabled:hover:bg-black',
-					'dark:enabled:hover:text-white'
+					'dark:hover:bg-black',
+					'dark:hover:text-white'
 				],
 				secondary: [
 					// Light theme
@@ -47,31 +48,31 @@ const button = cva(
 					'text-opacity-70',
 					'border-neutral-400',
 					'border-opacity-30',
-					'enabled:hover:border-black',
-					'enabled:hover:border-opacity-60',
-					'enabled:hover:text-opacity-100',
+					'hover:border-black',
+					'hover:border-opacity-60',
+					'hover:text-opacity-100',
 					// Dark theme
 					'dark:bg-black',
 					'dark:text-white',
 					'dark:text-opacity-50',
 					'dark:border-neutral-300',
 					'dark:border-opacity-50',
-					'dark:enabled:hover:border-opacity-100',
-					'dark:enabled:hover:text-opacity-100'
+					'dark:hover:border-opacity-100',
+					'dark:hover:text-opacity-100'
 				],
 				danger: [
 					'bg-red-600',
 					'text-white',
 					'border-red-600',
-					'enabled:hover:bg-transparent',
-					'enabled:hover:text-red-600'
+					'hover:bg-transparent',
+					'hover:text-red-600'
 				],
 				success: [
 					'bg-blue-600',
 					'text-white',
 					'border-blue-600',
-					'enabled:hover:bg-transparent',
-					'enabled:hover:text-blue-600'
+					'hover:bg-transparent',
+					'hover:text-blue-600'
 				]
 			},
 			size: {
@@ -80,7 +81,7 @@ const button = cva(
 			}
 		},
 		defaultVariants: {
-			size: 'lg'
+			size: 'sm'
 		}
 	}
 );
@@ -94,11 +95,11 @@ export interface ButtonProps extends VariantProps<typeof button>, ButtonOrLinkPr
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
-	{ variant, size, isLoading, leftIcon, rightIcon, children, ...props },
+	{ variant, size, isLoading, leftIcon, rightIcon, children, className, ...props },
 	ref
 ) {
 	return (
-		<ButtonOrLink className={button({ variant, size })} {...props} ref={ref}>
+		<ButtonOrLink className={clsx(className, button({ variant, size }))} {...props} ref={ref}>
 			<Transition
 				show={!!isLoading}
 				enter="transition-all"

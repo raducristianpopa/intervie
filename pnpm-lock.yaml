@@ -9,6 +9,7 @@ specifiers:
   '@graphql-codegen/typescript': ^2.7.3
   '@graphql-codegen/typescript-operations': ^2.5.3
   '@headlessui/react': ^1.7.1
+  '@hookform/resolvers': ^2.9.8
   '@next/bundle-analyzer': ^12.3.0
   '@pothos/core': ^3.21.0
   '@pothos/plugin-errors': ^3.7.0
@@ -44,6 +45,7 @@ specifiers:
   prisma: ^4.3.1
   react: 18.2.0
   react-dom: 18.2.0
+  react-hook-form: ^7.35.0
   tailwindcss: ^3.1.8
   ts-node: ^10.9.1
   tsconfig-paths: ^4.1.0
@@ -55,6 +57,7 @@ dependencies:
   '@commitlint/cli': 17.1.2
   '@commitlint/config-conventional': 17.1.0
   '@headlessui/react': 1.7.1_biqbaboplfbrettd7655fr4n2y
+  '@hookform/resolvers': 2.9.8_react-hook-form@7.35.0
   '@next/bundle-analyzer': 12.3.0
   '@pothos/core': 3.21.0_graphql@16.6.0
   '@pothos/plugin-errors': 3.7.0_77drd5c75cmluqqlsobcafssve
@@ -76,6 +79,7 @@ dependencies:
   postcss: 8.4.16
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-hook-form: 7.35.0_react@18.2.0
   tailwindcss: 3.1.8_57znarxsqwmnneadci5z5fd5gu
   zod: 3.19.1
 
@@ -1408,6 +1412,14 @@ packages:
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /@hookform/resolvers/2.9.8_react-hook-form@7.35.0:
+    resolution: {integrity: sha512-iVVjH0USq+1TqDdGkWe2M1x7Wn5OFPgVRo7CbWFsXTqqXqCaZtZcnzJu+UhljCWbthFWxWGXKLGYUDPZ04oVvQ==}
+    peerDependencies:
+      react-hook-form: ^7.0.0
+    dependencies:
+      react-hook-form: 7.35.0_react@18.2.0
     dev: false
 
   /@humanwhocodes/config-array/0.10.4:
@@ -5085,6 +5097,15 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
+
+  /react-hook-form/7.35.0_react@18.2.0:
+    resolution: {integrity: sha512-9CYdOed+Itbiu5VMVxW0PK9mBR3f0gDGJcZEyUSm0eJbDymQ913TRs2gHcQZZmfTC+rtxyDFRuelMxx/+xwMcw==}
+    engines: {node: '>=12.22.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-is/16.13.1:

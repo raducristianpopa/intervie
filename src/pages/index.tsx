@@ -1,3 +1,5 @@
-import Landing from '@components/Landing';
+const Index = () => {
+	return <>my content</>;
+};
 
-export default Landing;
+export default Index;
