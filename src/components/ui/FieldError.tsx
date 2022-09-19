@@ -14,7 +14,7 @@ const FieldError = ({ name }: FieldErrorProps) => {
 	const error = errors[name];
 	if (!error) return null;
 
-	return <div className="text-sm font-medium text-red-500">{error.message as string}</div>;
+	return <div className="my-1 text-sm font-medium text-red-600">{error.message as string}</div>;
 };
 
 export default FieldError;

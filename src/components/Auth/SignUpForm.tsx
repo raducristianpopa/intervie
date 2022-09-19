@@ -9,12 +9,12 @@ import Link from '@components/ui/Link';
 
 const signUpSchema = object({
 	email: string().email().min(1),
-	password: string().min(6),
-	confirmPassword: string().min(6)
-}).refine((data) => data.password === data.confirmPassword, {
-	message: 'Passwords do not match',
-	path: ['confirmPassword']
+	password: string().min(8)
 });
+// .refine((data) => data.password === data.confirmPassword, {
+// 	message: 'Passwords do not match',
+// 	path: ['confirmPassword']
+// });
 
 const SignUpForm = () => {
 	const [signUp, { data, error }] = useMutation(
@@ -71,14 +71,8 @@ const SignUpForm = () => {
 				<Input
 					label="Password"
 					type="password"
-					autoComplete="new-password"
+					autoComplete="password"
 					{...form.register('password')}
-				/>
-				<Input
-					label="Confirm password"
-					type="password"
-					autoComplete="new-password"
-					{...form.register('confirmPassword')}
 				/>
 				<Button aria-label="sign up" type="submit">
 					Sign Up

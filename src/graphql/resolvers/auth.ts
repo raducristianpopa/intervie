@@ -57,7 +57,6 @@ builder.mutationField('signUp', (t) =>
 			})
 		},
 		resolve: async (_query, _root, { input }, { ironSession }) => {
-			throw new CodedError('Email still exists', { path: 'email', message: 'Email exists.' });
 			const user = await prisma.user.create({
 				data: {
 					email: input.email,
