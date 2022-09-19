@@ -5,22 +5,22 @@ const LoggedInScope = () => {
 	return (
 		<>
 			{/* BEGIN Divider */}
-			<li className="flex flex-grow-0 flex-shrink-0 ml-2 basis-auto">
+			<li className="ml-2 flex flex-shrink-0 flex-grow-0 basis-auto">
 				<Divider />
 			</li>
 			{/* END Divider */}
 			{/* BEGIN User */}
-			<li className="flex flex-grow-0 flex-shrink min-w-0 basis-auto">
-				<div className="flex items-center justify-start max-w-full">
-					<Link href="/" className="flex items-center justify-start max-w-full">
+			<li className="flex min-w-0 flex-shrink flex-grow-0 basis-auto">
+				<div className="flex max-w-full items-center justify-start">
+					<Link href="/" className="flex max-w-full items-center justify-start">
 						{/* BEGIN Name */}
-						<p className="inline-block max-w-full min-w-0 px-2 overflow-hidden font-medium leading-5 text-white text-ellipsis whitespace-nowrap">
+						<p className="inline-block min-w-0 max-w-full overflow-hidden text-ellipsis whitespace-nowrap px-2 font-medium leading-5 text-white">
 							Radu Cristian
 						</p>
 						{/* END Name */}
 						{/* BEGIN Plan */}
 						<div className="hidden md:block">
-							<span className="inline-flex items-center h-5 px-2 text-xs font-medium leading-none text-black capitalize bg-white rounded-full whitespace-nowrap">
+							<span className="inline-flex h-5 items-center whitespace-nowrap rounded-full bg-white px-2 text-xs font-medium capitalize leading-none text-black">
 								PLAN
 							</span>
 						</div>

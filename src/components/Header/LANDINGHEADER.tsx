@@ -12,11 +12,11 @@ const Header: React.FC<{}> = () => {
 	const isSignUpPage = router.pathname === '/signup' ? true : false;
 
 	return (
-		<div className="sticky top-0 flex justify-center w-full max-w-full z-[101] h-16 bg-black">
-			<header className="flex items-center max-w-[1248px] w-full px-6 m-auto text-sm font-light">
+		<div className="sticky top-0 z-[101] flex h-16 w-full max-w-full justify-center bg-black">
+			<header className="m-auto flex w-full max-w-[1248px] items-center px-6 text-sm font-light">
 				{/* LOGO - START */}
-				<div className="flex items-center flex-1">
-					<Link href="/" className="relative inline-flex items-center p-2 -m-1">
+				<div className="flex flex-1 items-center">
+					<Link href="/" className="relative -m-1 inline-flex items-center p-2">
 						<Image
 							src="/assets/images/intervie_full_white_logo_364x100.svg"
 							alt="Intervie Logo"
@@ -28,12 +28,12 @@ const Header: React.FC<{}> = () => {
 				{/* LOGO - END */}
 				{/* Menu - START */}
 				{showMenu && (
-					<div className="flex items-center justify-center flex-1 w-full m-0">
-						<ul className="flex items-center justify-center list-none m-0 p-0 transition-opacity duration-200 ease-in-out will-change-[opacity]">
+					<div className="m-0 flex w-full flex-1 items-center justify-center">
+						<ul className="m-0 flex list-none items-center justify-center p-0 transition-opacity duration-200 ease-in-out will-change-[opacity]">
 							<li>
 								<Link
 									href="/features"
-									className="inline-block p-4 no-underline transition-colors duration-100 ease-in outline-none cursor-pointer text-zinc-500 hover:text-white"
+									className="inline-block cursor-pointer p-4 text-zinc-500 no-underline outline-none transition-colors duration-100 ease-in hover:text-white"
 								>
 									Features
 								</Link>
@@ -41,7 +41,7 @@ const Header: React.FC<{}> = () => {
 							<li>
 								<Link
 									href="/pricing"
-									className="inline-block p-4 no-underline transition-colors duration-100 ease-in outline-none cursor-pointer text-zinc-500 hover:text-white"
+									className="inline-block cursor-pointer p-4 text-zinc-500 no-underline outline-none transition-colors duration-100 ease-in hover:text-white"
 								>
 									Pricing
 								</Link>
@@ -49,7 +49,7 @@ const Header: React.FC<{}> = () => {
 							<li>
 								<Link
 									href="/about"
-									className="inline-block p-4 no-underline transition-colors duration-100 ease-in outline-none cursor-pointer text-zinc-500 hover:text-white"
+									className="inline-block cursor-pointer p-4 text-zinc-500 no-underline outline-none transition-colors duration-100 ease-in hover:text-white"
 								>
 									About us
 								</Link>
@@ -59,19 +59,19 @@ const Header: React.FC<{}> = () => {
 				)}
 				{/* Menu - END */}
 				{/* Login Menu - START */}
-				<div className="flex items-center justify-center flex-1">
+				<div className="flex flex-1 items-center justify-center">
 					<div className="ml-auto">
 						<div className="flex items-center">
 							<Link
 								href="/contact"
-								className="no-underline transition-colors duration-100 ease-in outline-none cursor-pointer text-zinc-500 hover:text-white"
+								className="cursor-pointer text-zinc-500 no-underline outline-none transition-colors duration-100 ease-in hover:text-white"
 							>
 								Contact
 							</Link>
 							{!isLoginPage && (
 								<Link
 									href="/login"
-									className="ml-6 no-underline transition-colors duration-100 ease-in outline-none cursor-pointer text-zinc-500 hover:text-white"
+									className="ml-6 cursor-pointer text-zinc-500 no-underline outline-none transition-colors duration-100 ease-in hover:text-white"
 								>
 									Login
 								</Link>

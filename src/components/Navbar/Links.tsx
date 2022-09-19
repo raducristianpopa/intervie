@@ -15,7 +15,7 @@ const navbarLinks: NavbarLinksProps[] = [
 const Links = () => {
 	return (
 		<div className="flex items-center">
-			<div className="flex items-center mr-2">
+			<div className="mr-2 flex items-center">
 				{navbarLinks.map((link) => (
 					<Link
 						key={link.name}

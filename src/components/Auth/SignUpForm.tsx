@@ -48,7 +48,7 @@ const SignUpForm = () => {
 	});
 
 	return (
-		<div className="flex items-center p-4 mx-auto w-[28rem]">
+		<div className="mx-auto flex w-[28rem] items-center p-4">
 			<Form
 				form={form}
 				onSubmit={({ email, password }) =>
@@ -58,10 +58,10 @@ const SignUpForm = () => {
 						}
 					})
 				}
-				className="w-full p-6 rounded-md bg-neutral-900 mt-1.5"
+				className="mt-1.5 w-full rounded-md bg-neutral-900 p-6"
 			>
-				<div className="flex flex-col items-center mb-2">
-					<h2 className="text-4xl font-bold text-center">Sign up</h2>
+				<div className="mb-2 flex flex-col items-center">
+					<h2 className="text-center text-4xl font-bold">Sign up</h2>
 					<Link href="/auth/login" className="font-medium hover:underline">
 						Already have an account? Sign in!
 					</Link>

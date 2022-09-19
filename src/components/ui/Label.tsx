@@ -8,7 +8,7 @@ export const Label = ({ htmlFor, content, ...props }: Props) => {
 	return (
 		<label
 			htmlFor={htmlFor}
-			className="block w-full mb-2 text-xs font-medium uppercase text-neutral-500"
+			className="mb-2 block w-full text-xs font-medium uppercase text-neutral-500"
 			{...props}
 		>
 			{content}
