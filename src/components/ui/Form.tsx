@@ -8,8 +8,9 @@ import {
 } from 'react-hook-form';
 import { TypeOf, ZodSchema } from 'zod';
 
-import { ComponentProps } from 'react';
+import { ComponentProps, Fragment } from 'react';
 
+import { CodedError, ZodError, ZodFieldError } from '@__generated__/schema.generated';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 interface UseZodFormProps<T extends ZodSchema<any>> extends UseFormProps<TypeOf<T>> {
@@ -31,22 +32,62 @@ export const useZodForm = <T extends ZodSchema<any>>({
 	});
 };
 
-const Form =
-	() =>
-	async <T extends FieldValues>({ form, onSubmit, children, ...props }: FormProps<T>) => {
-		const submitHandler: SubmitHandler<T> = async (values) => {
-			const res = await onSubmit(values);
-		};
+export const Form = <T extends FieldValues>({
+	form,
+	onSubmit,
+	children,
+	...props
+}: FormProps<T>) => {
+	// This is a custom submit handler so we will not have to do the same operations
+	// for every form we create. Basically, we will check for different type of errors
+	// that we defined in our GraphQL schema and we will handle them in different ways.
+	// This is not 100% typesafe, but it's a workaround. (surely there is a better way if doing this)
+	const submitHandler: SubmitHandler<T> = async (values) => {
+		const { data } = await onSubmit(values);
+		try {
+			if (typeof data === 'object') {
+				// We get the operation name (the query/mutation name)
+				const operationName = Object.keys(data)[0];
+				const res = data[operationName];
 
-		return (
-			<FormProvider {...form}>
-				<form onSubmit={form.handleSubmit(onSubmit)} {...props}>
-					<fieldset className="flex flex-col space-y-4" disabled={form.formState.isSubmitting}>
-						{children}
-					</fieldset>
-				</form>
-			</FormProvider>
-		);
+				// We check for different typenames so we can handle them in different ways.
+				if (res.__typename === 'CodedError') {
+					const codedErrorRes: CodedError = res;
+					if (codedErrorRes.validation) {
+						form.setError(codedErrorRes.validation.path as any, {
+							type: 'custom',
+							message: codedErrorRes.validation.message
+						});
+					}
+				}
+
+				if (res.__typename === 'ZodError') {
+					const zodErrorRes: ZodError = res;
+					if (zodErrorRes.errors) {
+						zodErrorRes.errors.map((error) => {
+							if (error.__typename === 'ZodFieldError') {
+								form.setError(error.path[1] as any, {
+									type: 'custom',
+									message: error.message
+								});
+							}
+						});
+					}
+				}
+			}
+		} catch (e) {
+			console.warn('Error while attempting to extract GraphQL errors.');
+			console.warn(e);
+		}
 	};
 
-export default Form;
+	return (
+		<FormProvider {...form}>
+			<form onSubmit={form.handleSubmit(submitHandler)} {...props}>
+				<fieldset className="flex flex-col space-y-4" disabled={form.formState.isSubmitting}>
+					{children}
+				</fieldset>
+			</form>
+		</FormProvider>
+	);
+};

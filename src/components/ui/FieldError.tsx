@@ -1,6 +1,6 @@
 import { useFormContext } from 'react-hook-form';
 
-interface FieldErrorProps {
+export interface FieldErrorProps {
 	name?: string;
 }
 

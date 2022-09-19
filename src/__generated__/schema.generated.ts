@@ -11,32 +11,68 @@ export type Scalars = {
   Int: number;
   Float: number;
   DateTime: string;
+  ErrorExtension: any;
 };
 
-export type LogInInput = {
-  email: Scalars['String'];
-  password: Scalars['String'];
+export type CodedError = CodedErrorInterface & {
+  __typename?: 'CodedError';
+  code: Scalars['String'];
+  message: Scalars['String'];
+  validation: Scalars['ErrorExtension'];
+};
+
+export type CodedErrorInterface = {
+  code: Scalars['String'];
+  message: Scalars['String'];
+  validation: Scalars['ErrorExtension'];
+};
+
+export type Error = {
+  message: Scalars['String'];
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
-  login: User;
+  signUp: MutationSignUpResult;
 };
 
 
-export type MutationLoginArgs = {
-  input: LogInInput;
+export type MutationSignUpArgs = {
+  input: SignUpInput;
+};
+
+export type MutationSignUpResult = CodedError | MutationSignUpSuccess | ZodError;
+
+export type MutationSignUpSuccess = {
+  __typename?: 'MutationSignUpSuccess';
+  data: User;
 };
 
 export type Query = {
   __typename?: 'Query';
-  test?: Maybe<User>;
   viewer?: Maybe<User>;
+};
+
+export type SignUpInput = {
+  email: Scalars['String'];
+  password: Scalars['String'];
 };
 
 export type User = {
   __typename?: 'User';
+  displayName: Scalars['String'];
   email: Scalars['String'];
   id: Scalars['String'];
-  name: Scalars['String'];
+};
+
+export type ZodError = Error & {
+  __typename?: 'ZodError';
+  errors: Array<ZodFieldError>;
+  message: Scalars['String'];
+};
+
+export type ZodFieldError = {
+  __typename?: 'ZodFieldError';
+  message: Scalars['String'];
+  path: Array<Scalars['String']>;
 };

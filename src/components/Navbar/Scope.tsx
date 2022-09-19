@@ -13,6 +13,7 @@ const Scope = () => {
 			<li className="flex flex-grow-0 flex-shrink-0 min-w-0 basis-auto">
 				<Link href="/" className="box-content relative block p-2 -m-2">
 					<Image
+						className="!text-red-100"
 						src="/assets/images/intervie_logo_only_white.svg"
 						width={26}
 						height={26}

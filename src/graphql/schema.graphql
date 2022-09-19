@@ -1,13 +1,54 @@
+type CodedError implements CodedErrorInterface {
+  code: String!
+  message: String!
+  validation: ErrorExtension!
+}
+
+interface CodedErrorInterface {
+  code: String!
+  message: String!
+  validation: ErrorExtension!
+}
+
 scalar DateTime
 
-type Mutation
+interface Error {
+  message: String!
+}
+
+scalar ErrorExtension
+
+type Mutation {
+  signUp(input: SignUpInput!): MutationSignUpResult!
+}
+
+union MutationSignUpResult = CodedError | MutationSignUpSuccess | ZodError
+
+type MutationSignUpSuccess {
+  data: User!
+}
 
 type Query {
-	viewer: User
+  viewer: User
+}
+
+input SignUpInput {
+  email: String!
+  password: String!
 }
 
 type User {
-	email: String!
-	id: String!
-	name: String!
+  displayName: String!
+  email: String!
+  id: String!
+}
+
+type ZodError implements Error {
+  errors: [ZodFieldError!]!
+  message: String!
+}
+
+type ZodFieldError {
+  message: String!
+  path: [String!]!
 }

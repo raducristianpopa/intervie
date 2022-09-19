@@ -1,5 +1,6 @@
 import { IncomingMessage, OutgoingMessage } from 'http';
 import { IronSession } from 'iron-session';
+import { ZodError, ZodFormattedError } from 'zod';
 
 import SchemaBuilder from '@pothos/core';
 import ErrorsPlugin from '@pothos/plugin-errors';
@@ -10,6 +11,8 @@ import SimpleObjectsPlugin from '@pothos/plugin-simple-objects';
 import ValidationPlugin from '@pothos/plugin-validation';
 import { Session } from '@prisma/client';
 import { prisma } from '@utils/db';
+
+import { CodedError } from './errors';
 
 export interface Context {
 	req: IncomingMessage;
@@ -43,6 +46,10 @@ export const builder = new SchemaBuilder<{
 		// We modify the types for the `ID` type to denote that it's always a string when it comes in.
 		ID: { Input: string; Output: string | number };
 		DateTime: { Input: Date; Output: Date };
+		ErrorExtension: {
+			Input: Record<string, string>;
+			Output: Record<string, string>;
+		};
 	};
 	AuthScopes: {
 		public: boolean;
@@ -73,6 +80,10 @@ builder.scalarType('DateTime', {
 	}
 });
 
+builder.scalarType('ErrorExtension', {
+	serialize: (extensions) => extensions
+});
+
 // This initializes the query and mutation types so that we can add fields to them dynamically:
 builder.queryType({
 	// Set the default auth scope to be authenticated users:
@@ -86,4 +97,76 @@ builder.mutationType({
 	authScopes: {
 		user: true
 	}
+});
+
+function flattenErrors(
+	error: ZodFormattedError<unknown>,
+	path: string[]
+): { path: string[]; message: string }[] {
+	const errors = error._errors.map((message) => ({
+		path,
+		message
+	}));
+
+	Object.keys(error).forEach((key) => {
+		if (key !== '_errors') {
+			errors.push(
+				...flattenErrors((error as Record<string, unknown>)[key] as ZodFormattedError<unknown>, [
+					...path,
+					key
+				])
+			);
+		}
+	});
+
+	return errors;
+}
+
+const ErrorInterface = builder.interfaceRef<Error>('Error').implement({
+	fields: (t) => ({
+		message: t.exposeString('message')
+	})
+});
+
+const CodedErrorInterface = builder.interfaceRef<CodedError>('CodedErrorInterface').implement({
+	fields: (t) => ({
+		code: t.exposeString('code'),
+		message: t.exposeString('message'),
+		validation: t.expose('validation', { type: 'ErrorExtension' })
+	})
+});
+
+builder.objectType(CodedError, {
+	name: 'CodedError',
+	interfaces: [CodedErrorInterface],
+	fields: (t) => ({
+		code: t.exposeString('code'),
+		message: t.exposeString('message'),
+		validation: t.expose('validation', { type: 'ErrorExtension' })
+	})
+});
+
+// A type for the individual validation issues
+const ZodFieldError = builder
+	.objectRef<{
+		message: string;
+		path: string[];
+	}>('ZodFieldError')
+	.implement({
+		fields: (t) => ({
+			message: t.exposeString('message'),
+			path: t.exposeStringList('path')
+		})
+	});
+
+// The actual error type
+builder.objectType(ZodError, {
+	name: 'ZodError',
+	interfaces: [ErrorInterface],
+	fields: (t) => ({
+		errors: t.field({
+			type: [ZodFieldError],
+			resolve: (err) => flattenErrors(err.format(), [])
+		})
+	})
 });
