@@ -2,7 +2,7 @@ import { ZodError } from 'zod';
 
 import { builder } from '@graphql/builder';
 import { CodedError } from '@graphql/errors';
-import { authenticate, hashPassword } from '@utils/auth';
+import { authenticate, hashPassword, verifyEmail } from '@utils/auth';
 import { prisma } from '@utils/db';
 import { createSession, deleteSession } from '@utils/sessions';
 
@@ -16,10 +16,9 @@ builder.queryField('viewer', (t) =>
 			if (!session?.userPk) {
 				return null;
 			}
-			return prisma.user.findUnique({
+			return prisma.user.findUniqueOrThrow({
 				...query,
-				where: { pk: session.userPk },
-				rejectOnNotFound: true
+				where: { pk: session.userPk }
 			});
 		}
 	})
@@ -57,6 +56,8 @@ builder.mutationField('signUp', (t) =>
 			})
 		},
 		resolve: async (_query, _root, { input }, { ironSession }) => {
+			await verifyEmail(input.email);
+
 			const user = await prisma.user.create({
 				data: {
 					email: input.email,

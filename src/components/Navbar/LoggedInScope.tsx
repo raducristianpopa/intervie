@@ -1,7 +1,21 @@
+import { gql } from '@apollo/client';
 import Divider from '@components/ui/Divider';
 import Link from '@components/ui/Link';
 
-const LoggedInScope = () => {
+import { LoggedInScope_User } from './__generated__/LoggedInScope.generated';
+
+export const LoggedInScopeFragment = gql`
+	fragment LoggedInScope_user on User {
+		email
+		displayName
+	}
+`;
+
+interface LoggedInScopeProps {
+	user: LoggedInScope_User;
+}
+
+const LoggedInScope = ({ user }: LoggedInScopeProps) => {
 	return (
 		<>
 			{/* BEGIN Divider */}
@@ -15,7 +29,7 @@ const LoggedInScope = () => {
 					<Link href="/" className="flex max-w-full items-center justify-start">
 						{/* BEGIN Name */}
 						<p className="inline-block min-w-0 max-w-full overflow-hidden text-ellipsis whitespace-nowrap px-2 font-medium leading-5 text-white">
-							Radu Cristian
+							{user.displayName || user.email}
 						</p>
 						{/* END Name */}
 						{/* BEGIN Plan */}

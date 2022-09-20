@@ -2,6 +2,7 @@ import crypto from 'crypto';
 import { bcrypt, bcryptVerify } from 'hash-wasm';
 import { ZodError } from 'zod';
 
+import { CodedError } from '@graphql/errors';
 import { User } from '@prisma/client';
 
 import { prisma } from './db';
@@ -83,3 +84,21 @@ export const authenticate = async (email: string, password: string): Promise<Use
 
 	return user;
 };
+
+export async function verifyEmail(email: string): Promise<void> {
+	const emailExists = !!(await prisma.user.count({
+		where: {
+			email: {
+				equals: email,
+				mode: 'insensitive'
+			}
+		}
+	}));
+
+	if (emailExists) {
+		throw new CodedError('We are sorry for this. The email you provided already exists.', {
+			path: 'email',
+			message: 'Email already exists.'
+		});
+	}
+}
