@@ -77,7 +77,8 @@ const button = cva(
 			},
 			size: {
 				sm: ['h-8', 'text-sm'],
-				lg: ['h-10', 'text-base']
+				lg: ['h-10', 'text-base'],
+				xl: ['h-12', 'text-base']
 			}
 		},
 		defaultVariants: {

@@ -1,2 +1,2 @@
-import './auth';
-import './user';
+import './authResolver';
+import './userResolver';

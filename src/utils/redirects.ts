@@ -4,7 +4,7 @@ import { resolveSession } from './sessions';
 
 export async function authenticatedRoute(
 	ctx: GetServerSidePropsContext,
-	redirect = '/auth/login'
+	redirect = '/login'
 ): Promise<GetServerSidePropsResult<{}>> {
 	const { session } = await resolveSession(ctx.req, ctx.res);
 

@@ -1,3 +1,4 @@
+import { Envelope } from 'phosphor-react';
 import { object, string } from 'zod';
 
 import { gql, useMutation } from '@apollo/client';
@@ -48,37 +49,62 @@ const SignUpForm = () => {
 	});
 
 	return (
-		<div className="mx-auto flex w-[28rem] items-center p-4">
-			<Form
-				form={form}
-				onSubmit={({ email, password }) =>
-					signUp({
-						variables: {
-							input: { email, password }
-						}
-					})
-				}
-				className="mt-1.5 w-full rounded-md bg-neutral-900 p-6"
-			>
-				<div className="mb-2 flex flex-col items-center">
-					<h2 className="text-center text-4xl font-bold">Sign up</h2>
-					<Link href="/auth/login" className="font-medium hover:underline">
-						Already have an account? Sign in!
-					</Link>
+		<>
+			<div className="mb-4 max-w-md text-center">
+				<h1 className="text-4xl font-bold leading-10 tracking-tighter">Join [...some message]</h1>
+			</div>
+			<div className="w-full max-w-sm self-center">
+				<Form
+					form={form}
+					onSubmit={({ email, password }) =>
+						signUp({
+							variables: {
+								input: { email, password }
+							}
+						})
+					}
+				>
+					<ErrorMessage title="Error creating account" error={error} />
+					<Input
+						label="Email"
+						type="email"
+						autoComplete="email"
+						placeholder="Email Address"
+						autoCorrect="off"
+						spellCheck="false"
+						required
+						{...form.register('email')}
+					/>
+					<Input
+						label="Password"
+						type="password"
+						autoComplete="off"
+						placeholder="Password"
+						autoCorrect="off"
+						spellCheck="false"
+						required
+						{...form.register('password')}
+					/>
+					<Button
+						aria-label="sign up"
+						variant="success"
+						size="xl"
+						type="submit"
+						leftIcon={<Envelope size={24} />}
+					>
+						Continue with Email
+					</Button>
+				</Form>
+				<div className="mt-3 text-center">
+					<p>
+						Already have an account?{' '}
+						<Link href="login" className="text-blue-500 hover:underline">
+							Log in
+						</Link>
+					</p>
 				</div>
-				<ErrorMessage title="Error creating account" error={error} />
-				<Input label="Email" type="email" autoComplete="email" {...form.register('email')} />
-				<Input
-					label="Password"
-					type="password"
-					autoComplete="password"
-					{...form.register('password')}
-				/>
-				<Button aria-label="sign up" type="submit">
-					Sign Up
-				</Button>
-			</Form>
-		</div>
+			</div>
+		</>
 	);
 };
 

@@ -3,6 +3,7 @@
 @tailwind utilities;
 @tailwind variants;
 
+/* INTER FONT - START */
 @layer base {
   @font-face {
     font-family: 'Inter';
@@ -204,19 +205,13 @@
     font-style: oblique 0deg 10deg;
     src: url("/assets/fonts/Inter.var.woff2?v=3.19") format("woff2");
   }
-  
-  /* INTER FONT - END */
 }
+/* INTER FONT - END */
 
-body {
-  @apply relative min-h-full max-w-[100vw] bg-black text-white
-}
 
 /* NOTE: Webkit autofill can be very annoying, and leave the auto-filled content invisible to the user. */
 /* We try to avoid this by setting this to a sane default, which seems to work based on some experimentation. */
 input:-webkit-autofill {
 	-webkit-text-fill-color: theme('colors.gray.800') !important;
 }
-
-/* INTER FONT - START */
 
