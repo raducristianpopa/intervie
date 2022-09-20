@@ -4,3 +4,4 @@
 pnpm typecheck
 pnpm prettier
 pnpm lint
+git add -A .
