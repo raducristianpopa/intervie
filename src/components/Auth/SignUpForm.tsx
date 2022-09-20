@@ -1,6 +1,8 @@
 import { Envelope } from 'phosphor-react';
 import { object, string } from 'zod';
 
+import { useEffect } from 'react';
+
 import { gql, useMutation } from '@apollo/client';
 
 import { Button } from '~/components/ui/Button';
@@ -8,6 +10,7 @@ import { ErrorMessage } from '~/components/ui/ErrorMessage';
 import { Form, useZodForm } from '~/components/ui/Form';
 import { Input } from '~/components/ui/Input';
 import Link from '~/components/ui/Link';
+import { useAuthRedirect } from '~/hooks/useAuthRedirect';
 
 const signUpSchema = object({
 	email: string().email().min(1),
@@ -19,6 +22,7 @@ const signUpSchema = object({
 // });
 
 const SignUpForm = () => {
+	const authRedirect = useAuthRedirect();
 	const [signUp, { data, error }] = useMutation(
 		gql`
 			mutation SignUpFormMutation($input: SignUpInput!) {
@@ -48,6 +52,12 @@ const SignUpForm = () => {
 	const form = useZodForm({
 		schema: signUpSchema
 	});
+
+	useEffect(() => {
+		if (data?.signUp.__typename === 'MutationLoginSuccess') {
+			authRedirect();
+		}
+	}, [data, authRedirect]);
 
 	return (
 		<>

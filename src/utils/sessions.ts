@@ -105,7 +105,7 @@ export const resolveSession = async (
 
 		if (session) {
 			// If the session expired update the `isExpired` field.
-			if (session.expiresAt >= new Date()) {
+			if (new Date() >= session.expiresAt) {
 				await prisma.session.update({
 					where: {
 						id: session.id
