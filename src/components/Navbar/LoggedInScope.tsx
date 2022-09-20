@@ -8,7 +8,7 @@ import { LoggedInScope_User } from './__generated__/LoggedInScope.generated';
 export const LoggedInScopeFragment = gql`
 	fragment LoggedInScope_user on User {
 		email
-		displayName
+		name
 	}
 `;
 
@@ -30,7 +30,7 @@ const LoggedInScope = ({ user }: LoggedInScopeProps) => {
 					<Link href="/" className="flex max-w-full items-center justify-start">
 						{/* BEGIN Name */}
 						<p className="inline-block min-w-0 max-w-full overflow-hidden text-ellipsis whitespace-nowrap px-2 font-medium leading-5 text-white">
-							{user.displayName || user.email}
+							{user.name}
 						</p>
 						{/* END Name */}
 						{/* BEGIN Plan */}

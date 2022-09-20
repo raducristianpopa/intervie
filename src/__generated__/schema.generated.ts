@@ -60,9 +60,9 @@ export type SignUpInput = {
 
 export type User = {
   __typename?: 'User';
-  displayName: Scalars['String'];
   email: Scalars['String'];
   id: Scalars['String'];
+  name: Scalars['String'];
 };
 
 export type ZodError = Error & {

@@ -38,9 +38,9 @@ input SignUpInput {
 }
 
 type User {
-  displayName: String!
   email: String!
   id: String!
+  name: String!
 }
 
 type ZodError implements Error {

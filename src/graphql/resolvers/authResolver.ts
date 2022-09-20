@@ -26,6 +26,12 @@ builder.queryField('viewer', (t) =>
 
 const SignUpInput = builder.inputType('SignUpInput', {
 	fields: (t) => ({
+		name: t.string({
+			validate: {
+				minLength: [8, { message: 'Use 5 characters or more for your name.' }],
+				maxLength: [255, { message: 'Use 100 characters or fewer for your name.' }]
+			}
+		}),
 		email: t.string({
 			validate: { email: [true, { message: 'Email is not valid.' }] }
 		}),
@@ -60,6 +66,7 @@ builder.mutationField('signUp', (t) =>
 
 			const user = await prisma.user.create({
 				data: {
+					name: input.name,
 					email: input.email,
 					password: await hashPassword(input.password)
 				}
