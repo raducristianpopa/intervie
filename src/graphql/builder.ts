@@ -48,8 +48,8 @@ export const builder = new SchemaBuilder<{
 		ID: { Input: string; Output: string | number };
 		DateTime: { Input: Date; Output: Date };
 		ErrorExtension: {
-			Input: Record<string, string>;
-			Output: Record<string, string>;
+			Input: Record<string, string> | {};
+			Output: Record<string, string> | {};
 		};
 	};
 	AuthScopes: {

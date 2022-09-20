@@ -1,3 +1,5 @@
+import toast, { Toaster } from 'react-hot-toast';
+
 import { ReactElement, ReactNode } from 'react';
 
 import { NextPage } from 'next';
@@ -29,6 +31,7 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
 			<NProgress />
 			<Navbar />
 			{getLayout(<Component {...pageProps} />)}
+			<Toaster position="bottom-right" />
 		</ApolloProvider>
 	);
 };

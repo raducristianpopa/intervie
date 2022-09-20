@@ -56,14 +56,14 @@ export const Form = <T extends FieldValues>({
 				// We check for different typenames so we can handle them in different ways.
 				if (res.__typename === 'CodedError') {
 					const codedErrorRes: CodedError = res;
-					if (codedErrorRes.validation) {
-						return form.setError(codedErrorRes.validation.path as any, {
+					if (codedErrorRes.validation && Object.keys(codedErrorRes.validation).length) {
+						form.setError(codedErrorRes.validation.path as any, {
 							type: 'custom',
 							message: codedErrorRes.validation.message
 						});
+					} else {
+						toast.error(codedErrorRes.message);
 					}
-
-					return toast.error(codedErrorRes.message);
 				}
 
 				if (res.__typename === 'ZodError') {
