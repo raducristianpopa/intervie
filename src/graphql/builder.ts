@@ -10,7 +10,8 @@ import ScopeAuthPlugin from '@pothos/plugin-scope-auth';
 import SimpleObjectsPlugin from '@pothos/plugin-simple-objects';
 import ValidationPlugin from '@pothos/plugin-validation';
 import { Session } from '@prisma/client';
-import { prisma } from '@utils/db';
+
+import { prisma } from '~/utils/db';
 
 import { CodedError } from './errors';
 

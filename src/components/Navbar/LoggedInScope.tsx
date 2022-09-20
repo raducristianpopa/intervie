@@ -1,6 +1,7 @@
 import { gql } from '@apollo/client';
-import Divider from '@components/ui/Divider';
-import Link from '@components/ui/Link';
+
+import Divider from '~/components/ui/Divider';
+import Link from '~/components/ui/Link';
 
 import { LoggedInScope_User } from './__generated__/LoggedInScope.generated';
 

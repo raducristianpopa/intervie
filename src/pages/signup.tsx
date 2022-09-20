@@ -2,9 +2,9 @@ import { ReactElement } from 'react';
 
 import { GetServerSideProps } from 'next';
 
-import SignUpForm from '@components/Auth/SignUpForm';
-import AuthContainer from '@components/ui/AuthContainer';
-import { unauthenticatedRoute } from '@utils/redirects';
+import SignUpForm from '~/components/Auth/SignUpForm';
+import AuthContainer from '~/components/ui/AuthContainer';
+import { unauthenticatedRoute } from '~/utils/redirects';
 
 import { NextPageWithLayout } from './_app';
 

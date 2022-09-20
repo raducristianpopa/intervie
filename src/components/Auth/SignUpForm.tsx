@@ -2,11 +2,12 @@ import { Envelope } from 'phosphor-react';
 import { object, string } from 'zod';
 
 import { gql, useMutation } from '@apollo/client';
-import { Button } from '@components/ui/Button';
-import { ErrorMessage } from '@components/ui/ErrorMessage';
-import { Form, useZodForm } from '@components/ui/Form';
-import { Input } from '@components/ui/Input';
-import Link from '@components/ui/Link';
+
+import { Button } from '~/components/ui/Button';
+import { ErrorMessage } from '~/components/ui/ErrorMessage';
+import { Form, useZodForm } from '~/components/ui/Form';
+import { Input } from '~/components/ui/Input';
+import Link from '~/components/ui/Link';
 
 const signUpSchema = object({
 	email: string().email().min(1),

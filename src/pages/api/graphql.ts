@@ -8,9 +8,9 @@ import { IncomingHttpHeaders } from 'http';
 
 import { NextApiHandler } from 'next';
 
-import { Context, createGraphQLContext } from '@graphql/builder';
-import { schema } from '@graphql/index';
-import { resolveSession } from '@utils/sessions';
+import { Context, createGraphQLContext } from '~/graphql/builder';
+import { schema } from '~/graphql/index';
+import { resolveSession } from '~/utils/sessions';
 
 interface GraphQLRequest {
 	body?: any;

@@ -1,7 +1,8 @@
 import Image from 'next/future/image';
 
 import { gql, useQuery } from '@apollo/client';
-import Link from '@components/ui/Link';
+
+import Link from '~/components/ui/Link';
 
 import LoggedInScope from './LoggedInScope';
 import { LoggedInScopeFragment } from './LoggedInScope';

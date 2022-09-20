@@ -1,10 +1,10 @@
 import { ZodError } from 'zod';
 
-import { builder } from '@graphql/builder';
-import { CodedError } from '@graphql/errors';
-import { authenticate, hashPassword, verifyEmail } from '@utils/auth';
-import { prisma } from '@utils/db';
-import { createSession, deleteSession } from '@utils/sessions';
+import { builder } from '~/graphql/builder';
+import { CodedError } from '~/graphql/errors';
+import { authenticate, hashPassword, verifyEmail } from '~/utils/auth';
+import { prisma } from '~/utils/db';
+import { createSession, deleteSession } from '~/utils/sessions';
 
 builder.queryField('viewer', (t) =>
 	t.prismaField({

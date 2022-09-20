@@ -10,8 +10,9 @@ import { TypeOf, ZodSchema } from 'zod';
 
 import { ComponentProps, Fragment } from 'react';
 
-import { CodedError, ZodError, ZodFieldError } from '@__generated__/schema.generated';
 import { zodResolver } from '@hookform/resolvers/zod';
+
+import { CodedError, ZodError, ZodFieldError } from '~/__generated__/schema.generated';
 
 interface UseZodFormProps<T extends ZodSchema<any>> extends UseFormProps<TypeOf<T>> {
 	schema: T;

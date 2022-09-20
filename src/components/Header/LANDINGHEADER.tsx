@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import { Button } from '@components/ui/Button';
-import Link from '@components/ui/Link';
+import { Button } from '~/components/ui/Button';
+import Link from '~/components/ui/Link';
 
 const Header: React.FC<{}> = () => {
 	const router = useRouter();

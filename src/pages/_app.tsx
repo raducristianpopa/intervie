@@ -3,12 +3,13 @@ import { ReactElement, ReactNode } from 'react';
 import { NextPage } from 'next';
 
 import type { AppProps } from 'next/app';
-import { useRouter } from 'next/router';
 
 import { ApolloProvider } from '@apollo/client';
-import Navbar from '@components/Navbar';
-import '@style.css';
-import { useApollo } from '@utils/apollo';
+
+import Navbar from '~/components/Navbar';
+import { NProgress } from '~/components/ui/NProgress';
+import '~/style.css';
+import { useApollo } from '~/utils/apollo';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 	getLayout?: (page: ReactElement) => ReactNode;
@@ -25,6 +26,7 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
 
 	return (
 		<ApolloProvider client={client}>
+			<NProgress />
 			<Navbar />
 			{getLayout(<Component {...pageProps} />)}
 		</ApolloProvider>

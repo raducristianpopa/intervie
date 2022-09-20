@@ -215,3 +215,10 @@ input:-webkit-autofill {
 	-webkit-text-fill-color: theme('colors.gray.800') !important;
 }
 
+#nprogress {
+	@apply pointer-events-none z-50;
+}
+#nprogress .bar {
+	@apply bg-purple-500 fixed z-50 top-0 left-0 w-full h-0.5;
+}
+

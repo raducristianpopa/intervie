@@ -1,9 +1,9 @@
 import crypto from 'crypto';
 import { bcrypt, bcryptVerify } from 'hash-wasm';
-import { ZodError } from 'zod';
 
-import { CodedError } from '@graphql/errors';
 import { User } from '@prisma/client';
+
+import { CodedError } from '~/graphql/errors';
 
 import { prisma } from './db';
 
