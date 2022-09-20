@@ -54,4 +54,4 @@ Now we should be able to start the development process. This will start the Dock
 pnpm dev
 ```
 
-The site should now be available on localhost:3000!
+The site should now be available on [localhost:3000](http://localhost:3000)!
