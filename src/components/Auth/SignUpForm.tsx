@@ -55,7 +55,7 @@ const SignUpForm = () => {
 	});
 
 	useEffect(() => {
-		if (data?.signUp.__typename === 'MutationLoginSuccess') {
+		if (data?.signUp.__typename === 'MutationSignUpSuccess') {
 			authRedirect();
 		}
 	}, [data, authRedirect]);
