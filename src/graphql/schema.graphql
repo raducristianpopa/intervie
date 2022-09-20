@@ -34,6 +34,7 @@ type Query {
 
 input SignUpInput {
   email: String!
+  name: String!
   password: String!
 }
 

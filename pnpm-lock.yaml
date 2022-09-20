@@ -39,6 +39,7 @@ specifiers:
   graphql: ^16.6.0
   graphql-helix: ^1.13.0
   hash-wasm: ^4.9.0
+  html-entities: ^2.3.3
   husky: ^8.0.1
   iron-session: ^6.2.1
   jsonwebtoken: ^8.5.1
@@ -81,6 +82,7 @@ dependencies:
   graphql: 16.6.0
   graphql-helix: 1.13.0_graphql@16.6.0
   hash-wasm: 4.9.0
+  html-entities: 2.3.3
   iron-session: 6.2.1_next@12.3.0
   jsonwebtoken: 8.5.1
   next: 12.3.0_65aaefrptgalbi6a2fwpzxfmae
@@ -3982,6 +3984,10 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       lru-cache: 6.0.0
+
+  /html-entities/2.3.3:
+    resolution: {integrity: sha512-DV5Ln36z34NNTDgnz0EWGBLZENelNAtkiFA4kyNOG2tDI6Mz1uSWiq1wAKdyjnJwyDiDO7Fa2SO1CTxPXL8VxA==}
+    dev: false
 
   /http-proxy-agent/5.0.0:
     resolution: {integrity: sha512-n2hY8YdoRE1i7r6M0w9DIw5GgZN0G25P8zLCRQ8rjXtTU3vsNFBI/vWK/UIeE6g5MUUz6avwAPXmL6Fy9D/90w==}

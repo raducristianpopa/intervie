@@ -1,4 +1,5 @@
 import { ZodError } from 'zod';
+import zod from 'zod';
 
 import { builder } from '~/graphql/builder';
 import { CodedError } from '~/graphql/errors';
@@ -24,18 +25,25 @@ builder.queryField('viewer', (t) =>
 	})
 );
 
+// TODO(bear): Figure out how to verify if `password` = `confirmPassword`
 const SignUpInput = builder.inputType('SignUpInput', {
 	fields: (t) => ({
 		name: t.string({
 			validate: {
-				minLength: [8, { message: 'Use 5 characters or more for your name.' }],
-				maxLength: [255, { message: 'Use 100 characters or fewer for your name.' }]
+				minLength: [5, { message: 'Use 5 characters or more for your name.' }],
+				maxLength: [100, { message: 'Use 100 characters or fewer for your name.' }]
 			}
 		}),
 		email: t.string({
 			validate: { email: [true, { message: 'Email is not valid.' }] }
 		}),
 		password: t.string({
+			validate: {
+				minLength: [8, { message: 'Use 8 characters or more for your password.' }],
+				maxLength: [255, { message: 'Use 100 characters or fewer for your password.' }]
+			}
+		}),
+		confirmPassword: t.string({
 			validate: {
 				minLength: [8, { message: 'Use 8 characters or more for your password.' }],
 				maxLength: [255, { message: 'Use 100 characters or fewer for your password.' }]

@@ -13,13 +13,14 @@ import Link from '~/components/ui/Link';
 import { useAuthRedirect } from '~/hooks/useAuthRedirect';
 
 const signUpSchema = object({
+	name: string().min(5).max(100),
 	email: string().email().min(1),
-	password: string().min(8)
+	password: string().min(8),
+	confirmPassword: string().min(8)
+}).refine((data) => data.password === data.confirmPassword, {
+	message: 'Passwords do not match.',
+	path: ['confirmPassword']
 });
-// .refine((data) => data.password === data.confirmPassword, {
-// 	message: 'Passwords do not match',
-// 	path: ['confirmPassword']
-// });
 
 const SignUpForm = () => {
 	const authRedirect = useAuthRedirect();
@@ -67,20 +68,29 @@ const SignUpForm = () => {
 			<div className="w-full max-w-sm self-center">
 				<Form
 					form={form}
-					onSubmit={({ email, password }) =>
+					onSubmit={({ name, email, password, confirmPassword }) =>
 						signUp({
 							variables: {
-								input: { email, password }
+								input: { name, email, password, confirmPassword }
 							}
 						})
 					}
 				>
 					<ErrorMessage title="Error creating account" error={error} />
 					<Input
+						label="Name"
+						type="text"
+						placeholder="(ex: John Doe)"
+						autoCorrect="off"
+						spellCheck="false"
+						required
+						{...form.register('name')}
+					/>
+					<Input
 						label="Email"
 						type="email"
 						autoComplete="email"
-						placeholder="Email Address"
+						placeholder="(ex: johndoe@example.com)"
 						autoCorrect="off"
 						spellCheck="false"
 						required
@@ -95,6 +105,16 @@ const SignUpForm = () => {
 						spellCheck="false"
 						required
 						{...form.register('password')}
+					/>
+					<Input
+						label="Confirm password"
+						type="password"
+						autoComplete="off"
+						placeholder="Confirm password"
+						autoCorrect="off"
+						spellCheck="false"
+						required
+						{...form.register('confirmPassword')}
 					/>
 					<Button
 						aria-label="sign up"
