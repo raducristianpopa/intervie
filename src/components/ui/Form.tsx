@@ -6,6 +6,7 @@ import {
 	UseFormReturn,
 	useForm
 } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { TypeOf, ZodSchema } from 'zod';
 
 import { ComponentProps, Fragment } from 'react';
@@ -56,11 +57,13 @@ export const Form = <T extends FieldValues>({
 				if (res.__typename === 'CodedError') {
 					const codedErrorRes: CodedError = res;
 					if (codedErrorRes.validation) {
-						form.setError(codedErrorRes.validation.path as any, {
+						return form.setError(codedErrorRes.validation.path as any, {
 							type: 'custom',
 							message: codedErrorRes.validation.message
 						});
 					}
+
+					return toast.error(codedErrorRes.message);
 				}
 
 				if (res.__typename === 'ZodError') {
