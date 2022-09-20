@@ -57,7 +57,7 @@ export const Form = <T extends FieldValues>({
 				if (res.__typename === 'CodedError') {
 					const codedErrorRes: CodedError = res;
 					if (codedErrorRes.validation && Object.keys(codedErrorRes.validation).length) {
-						form.setError(codedErrorRes.validation.path as any, {
+						form.setError(codedErrorRes.validation.path, {
 							type: 'custom',
 							message: codedErrorRes.validation.message
 						});

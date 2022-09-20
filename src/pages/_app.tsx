@@ -31,7 +31,7 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
 			<NProgress />
 			<Navbar />
 			{getLayout(<Component {...pageProps} />)}
-			<Toaster position="bottom-right" />
+			<Toaster position="top-center" />
 		</ApolloProvider>
 	);
 };

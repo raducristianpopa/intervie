@@ -96,6 +96,6 @@ export async function verifyEmail(email: string): Promise<void> {
 	}));
 
 	if (emailExists) {
-		throw new CodedError('We are sorry for this. The email you provided already exists.');
+		throw new CodedError('We are sorry for this.\n The email you provided already exists.');
 	}
 }
