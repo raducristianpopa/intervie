@@ -2,4 +2,4 @@
 .vscode
 .husky
 src/**/__generated__/**
-
+CODEOWNERS
