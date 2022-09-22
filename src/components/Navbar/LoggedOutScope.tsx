@@ -1,9 +1,11 @@
 import Image from 'next/future/image';
 
+import { TextOnlyLogo } from '../ui/Logo';
+
 const LoggedOutScope = () => {
 	return (
 		<li className="ml-2 flex flex-shrink-0 flex-grow-0 basis-auto">
-			<Image src="/assets/images/intervie_text_only_white.svg" height={26} width="100" alt="" />
+			<TextOnlyLogo className="h-[26px] w-[100px] text-white" />
 		</li>
 	);
 };

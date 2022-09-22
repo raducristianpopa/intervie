@@ -4,6 +4,7 @@ import { gql, useQuery } from '@apollo/client';
 
 import Link from '~/components/ui/Link';
 
+import { IconOnlyLogo } from '../ui/Logo';
 import LoggedInScope from './LoggedInScope';
 import { LoggedInScopeFragment } from './LoggedInScope';
 import LoggedOutScope from './LoggedOutScope';
@@ -27,13 +28,7 @@ const Scope = () => {
 			{/* BEGIN Logo  */}
 			<li className="flex min-w-0 flex-shrink-0 flex-grow-0 basis-auto">
 				<Link href="/" className="relative -m-2 box-content block p-2">
-					<Image
-						className="!text-red-100"
-						src="/assets/images/intervie_logo_only_white.svg"
-						width={26}
-						height={26}
-						alt="Intervie Logo"
-					/>
+					<IconOnlyLogo className="h-[26px] w-[26px] text-white" />
 				</Link>
 			</li>
 			{/* END Logo */}
