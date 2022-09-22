@@ -46,7 +46,7 @@ model Session {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  user   User @relation(fields: [userPk], references: [pk])
+  user   User @relation(fields: [userPk], references: [pk], onDelete: Cascade, onUpdate: NoAction)
   userPk Int
 }
 
