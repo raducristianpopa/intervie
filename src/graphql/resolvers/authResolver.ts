@@ -1,3 +1,4 @@
+import { validate } from 'graphql';
 import { ZodError, z } from 'zod';
 
 import { builder } from '~/graphql/builder';
@@ -25,7 +26,6 @@ builder.queryField('viewer', (t) =>
 	})
 );
 
-// TODO(bear): Figure out how to verify if `password` = `confirmPassword`
 const SignUpInput = builder.inputType('SignUpInput', {
 	fields: (t) => ({
 		name: t.string({
@@ -71,7 +71,11 @@ const SignUpInput = builder.inputType('SignUpInput', {
 				maxLength: [255, { message: 'Use 100 characters or fewer for your password.' }]
 			}
 		})
-	})
+	}),
+	validate: [
+		({ password, confirmPassword }) => password === confirmPassword,
+		{ message: 'Passwords do not match.', path: ['password'] }
+	]
 });
 
 builder.mutationField('signUp', (t) =>
