@@ -44,6 +44,7 @@ specifiers:
   iron-session: ^6.2.1
   jsonwebtoken: ^8.5.1
   next: 12.3.0
+  next-themes: ^0.2.1
   nprogress: ^0.2.0
   phosphor-react: ^1.4.1
   postcss: ^8.4.16
@@ -86,6 +87,7 @@ dependencies:
   iron-session: 6.2.1_next@12.3.0
   jsonwebtoken: 8.5.1
   next: 12.3.0_65aaefrptgalbi6a2fwpzxfmae
+  next-themes: 0.2.1_c3hne4hwj64hb7tofigd3bvkji
   nprogress: 0.2.0
   phosphor-react: 1.4.1_react@18.2.0
   postcss: 8.4.16
@@ -4772,6 +4774,18 @@ packages:
   /natural-compare/1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
+
+  /next-themes/0.2.1_c3hne4hwj64hb7tofigd3bvkji:
+    resolution: {integrity: sha512-B+AKNfYNIzh0vqQQKqQItTS8evEouKD7H5Hj3kmuPERwddR2TxvDSFZuTj6T7Jfn1oyeUyJMydPl1Bkxkh0W7A==}
+    peerDependencies:
+      next: '*'
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      next: 12.3.0_65aaefrptgalbi6a2fwpzxfmae
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /next/12.3.0_65aaefrptgalbi6a2fwpzxfmae:
     resolution: {integrity: sha512-GpzI6me9V1+XYtfK0Ae9WD0mKqHyzQlGq1xH1rzNIYMASo4Tkl4rTe9jSqtBpXFhOS33KohXs9ZY38Akkhdciw==}

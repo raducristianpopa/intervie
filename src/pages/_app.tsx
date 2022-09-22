@@ -1,3 +1,4 @@
+import { ThemeProvider } from 'next-themes';
 import toast, { Toaster } from 'react-hot-toast';
 
 import { ReactElement, ReactNode } from 'react';
@@ -28,10 +29,17 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
 
 	return (
 		<ApolloProvider client={client}>
-			<NProgress />
-			<Navbar />
-			{getLayout(<Component {...pageProps} />)}
-			<Toaster position="top-center" />
+			<ThemeProvider
+				storageKey="preferred-theme"
+				defaultTheme="system"
+				attribute="class"
+				enableSystem
+			>
+				<NProgress />
+				<Navbar />
+				{getLayout(<Component {...pageProps} />)}
+				<Toaster position="top-center" />
+			</ThemeProvider>
 		</ApolloProvider>
 	);
 };
