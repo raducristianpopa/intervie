@@ -1,8 +1,21 @@
 import React from 'react';
 
+import { gql } from '@apollo/client';
+
 import Link from '~/components/ui/Link';
 
 import UserMenu from './Menu';
+import { Resources_User } from './__generated__/Resources.generated';
+
+export const ResourcesFragment = gql`
+	fragment Resources_user on User {
+		id
+	}
+`;
+
+interface ResourcesProps {
+	user: Resources_User | undefined;
+}
 
 interface ResourceLinkProps {
 	name: string;
@@ -14,7 +27,7 @@ export const resources: ResourceLinkProps[] = [
 	{ name: 'Changelog', href: '/changelog' }
 ];
 
-const Resources = () => {
+const Resources = ({ user }: ResourcesProps) => {
 	return (
 		<div className="flex items-center">
 			<div className="flex items-center">
@@ -27,7 +40,7 @@ const Resources = () => {
 						{resource.name}
 					</Link>
 				))}
-				<UserMenu />
+				{user && <UserMenu />}
 			</div>
 		</div>
 	);
