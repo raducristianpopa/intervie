@@ -1,11 +1,9 @@
-import clsx from 'clsx';
-import { List, X } from 'phosphor-react';
-
 import React, { Fragment } from 'react';
 
 import { useRouter } from 'next/router';
 
 import { Disclosure, Menu, Transition } from '@headlessui/react';
+import { List, X } from 'phosphor-react';
 
 import Avatar from '~/components/ui/Avatar';
 
