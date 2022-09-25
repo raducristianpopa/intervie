@@ -67,5 +67,3 @@ const UserMenu = () => {
 };
 
 export default UserMenu;
-
-<div></div>;

@@ -1,9 +1,8 @@
-import { VariantProps, cva } from 'class-variance-authority';
-import clsx from 'clsx';
-
 import { ReactNode, forwardRef } from 'react';
 
 import { Transition } from '@headlessui/react';
+import { VariantProps, cva } from 'class-variance-authority';
+import clsx from 'clsx';
 
 import { ButtonOrLink, Props as ButtonOrLinkProps } from './ButtonOrLink';
 import { Spinner } from './Spinner';

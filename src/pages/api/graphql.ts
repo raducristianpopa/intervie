@@ -1,3 +1,5 @@
+import { NextApiHandler } from 'next';
+
 import {
 	getGraphQLParameters,
 	processRequest,
@@ -5,8 +7,6 @@ import {
 	shouldRenderGraphiQL
 } from 'graphql-helix';
 import { IncomingHttpHeaders } from 'http';
-
-import { NextApiHandler } from 'next';
 
 import { Context, createGraphQLContext } from '~/graphql/builder';
 import { schema } from '~/graphql/index';

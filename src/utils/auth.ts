@@ -1,7 +1,6 @@
+import { User } from '@prisma/client';
 import crypto from 'crypto';
 import { bcrypt, bcryptVerify } from 'hash-wasm';
-
-import { User } from '@prisma/client';
 
 import { CodedError } from '~/graphql/errors';
 

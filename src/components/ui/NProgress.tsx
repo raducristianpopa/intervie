@@ -1,8 +1,8 @@
-import nprogress from 'nprogress';
-
 import { useEffect } from 'react';
 
 import { useRouter } from 'next/router';
+
+import nprogress from 'nprogress';
 
 // This component provides a minimal progress indicator at the header of the page
 // when navigating between pages.

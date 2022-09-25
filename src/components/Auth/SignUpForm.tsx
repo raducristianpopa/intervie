@@ -1,9 +1,8 @@
-import { Envelope } from 'phosphor-react';
-import { object, string } from 'zod';
-
 import { useEffect } from 'react';
 
 import { gql, useMutation } from '@apollo/client';
+import { Envelope } from 'phosphor-react';
+import { object, string } from 'zod';
 
 import { Button } from '~/components/ui/Button';
 import { ErrorMessage } from '~/components/ui/ErrorMessage';

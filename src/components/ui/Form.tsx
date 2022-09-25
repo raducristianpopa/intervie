@@ -1,3 +1,6 @@
+import { ComponentProps, Fragment } from 'react';
+
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
 	FieldValues,
 	FormProvider,
@@ -8,10 +11,6 @@ import {
 } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { TypeOf, ZodSchema } from 'zod';
-
-import { ComponentProps, Fragment } from 'react';
-
-import { zodResolver } from '@hookform/resolvers/zod';
 
 import { CodedError, ZodError, ZodFieldError } from '~/__generated__/schema.generated';
 

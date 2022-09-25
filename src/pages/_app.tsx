@@ -1,6 +1,3 @@
-import { ThemeProvider } from 'next-themes';
-import toast, { Toaster } from 'react-hot-toast';
-
 import { ReactElement, ReactNode } from 'react';
 
 import { NextPage } from 'next';
@@ -8,6 +5,8 @@ import { NextPage } from 'next';
 import type { AppProps } from 'next/app';
 
 import { ApolloProvider } from '@apollo/client';
+import { ThemeProvider } from 'next-themes';
+import toast, { Toaster } from 'react-hot-toast';
 
 import Navbar from '~/components/Navbar';
 import { NProgress } from '~/components/ui/NProgress';

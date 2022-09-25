@@ -1,6 +1,6 @@
-import clsx from 'clsx';
-
 import { ComponentProps, ReactNode, forwardRef } from 'react';
+
+import clsx from 'clsx';
 
 import FieldError from './FieldError';
 import { Label } from './Label';
