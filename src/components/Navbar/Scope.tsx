@@ -28,7 +28,7 @@ const Scope = () => {
 			{/* BEGIN Logo  */}
 			<li className="flex min-w-0 flex-shrink-0 flex-grow-0 basis-auto">
 				<Link href="/" className="relative -m-2 box-content block p-2">
-					<IconOnlyLogo className="h-[26px] w-[26px] text-white" />
+					<IconOnlyLogo className="h-[30px] w-[30px] text-black dark:text-white" />
 				</Link>
 			</li>
 			{/* END Logo */}

@@ -1,4 +1,4 @@
-import Links from './Links';
+import Resources from './Resources';
 import Scope from './Scope';
 
 export const Navbar = () => {
@@ -8,7 +8,7 @@ export const Navbar = () => {
 				<Scope />
 			</div>
 			<div className="flex flex-shrink-0 flex-grow-0 basis-0 justify-end">
-				<Links />
+				<Resources />
 			</div>
 		</nav>
 	);

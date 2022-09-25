@@ -44,21 +44,19 @@ const button = cva(
 					// Light theme
 					'bg-neutral-100',
 					'bg-opacity-20',
-					'text-black',
-					'text-opacity-70',
+					'text-zinc-500',
 					'border-neutral-400',
 					'border-opacity-30',
 					'hover:border-black',
-					'hover:border-opacity-60',
-					'hover:text-opacity-100',
+					'hover:border-opacity-80',
+					'hover:text-black',
 					// Dark theme
 					'dark:bg-black',
-					'dark:text-white',
-					'dark:text-opacity-50',
+					'dark:text-zinc-500',
 					'dark:border-neutral-300',
 					'dark:border-opacity-50',
-					'dark:hover:border-opacity-100',
-					'dark:hover:text-opacity-100'
+					'dark:hover:border-opacity-80',
+					'dark:hover:text-white'
 				],
 				danger: [
 					'bg-red-600',

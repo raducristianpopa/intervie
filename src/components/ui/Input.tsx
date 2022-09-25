@@ -49,7 +49,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
 						(rightContent || rightIcon) && 'order-1 rounded-r-none',
 						leftIcon && 'peer border-l-0 !pl-0',
 						rightIcon && 'peer border-r-0',
-						'inline-flex h-10 w-full min-w-0 rounded-md border border-neutral-400 border-opacity-30 bg-white px-3 text-sm leading-6 text-inherit  text-black ring-0 transition-colors duration-150 ease-linear [-moz-appearance:none] placeholder:font-extralight  focus:border-neutral-600 focus:border-opacity-80 focus:ring-0	dark:border-neutral-300 dark:border-opacity-40 dark:bg-black dark:text-white focus:dark:border-opacity-80'
+						'inline-flex h-10 w-full min-w-0 rounded-md border border-neutral-400 border-opacity-30 bg-white px-3 text-sm leading-6 text-inherit  text-black ring-0 transition-colors duration-150 ease-linear [-moz-appearance:none] placeholder:font-extralight  focus:border-neutral-600 focus:border-opacity-80 focus:ring-0	dark:border-neutral-300 dark:border-opacity-50 dark:bg-black dark:text-white focus:dark:border-opacity-80'
 					)}
 					type={type}
 					ref={ref}

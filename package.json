@@ -12,7 +12,7 @@
 		"prepare": "husky install",
 		"preinstall": "npx only-allow pnpm",
 		"typecheck": "tsc --noEmit",
-		"dev": "concurrently -c green.bold,blue.bold,red.bold,white.bold 'pnpm:dev:docker' 'pnpm:dev:next' 'pnpm:dev:codegen' 'pnpm:prisma:studio'",
+		"dev": "concurrently -c green.bold,blue.bold,red.bold,white.bold 'pnpm:dev:docker' 'pnpm:dev:next -- -H:192.168.1.104' 'pnpm:dev:codegen' 'pnpm:prisma:studio'",
 		"codegen": "pnpm codegen:schema && pnpm codegen:graphql",
 		"prettier": "pnpm prettier:format && pnpm prettier:check",
 		"build": "pnpm prisma:generate && next build",

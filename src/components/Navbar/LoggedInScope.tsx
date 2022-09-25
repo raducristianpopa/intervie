@@ -29,13 +29,13 @@ const LoggedInScope = ({ user }: LoggedInScopeProps) => {
 				<div className="flex max-w-full items-center justify-start">
 					<Link href="/" className="flex max-w-full items-center justify-start">
 						{/* BEGIN Name */}
-						<p className="inline-block min-w-0 max-w-full overflow-hidden text-ellipsis whitespace-nowrap px-2 font-medium leading-5 text-white">
+						<p className="inline-block min-w-0 max-w-full overflow-hidden text-ellipsis whitespace-nowrap px-2 font-medium leading-5 text-black dark:text-white">
 							{user.name}
 						</p>
 						{/* END Name */}
 						{/* BEGIN Plan */}
 						<div className="hidden md:block">
-							<span className="inline-flex h-5 items-center whitespace-nowrap rounded-full bg-white px-2 text-xs font-medium capitalize leading-none text-black">
+							<span className="inline-flex h-5 items-center whitespace-nowrap rounded-full bg-black px-2 text-xs font-medium capitalize leading-none text-white dark:bg-white dark:text-black">
 								PLAN
 							</span>
 						</div>
