@@ -39,7 +39,15 @@ const SignUpInput = builder.inputType('SignUpInput', {
 			}
 		}),
 		email: t.string({
-			validate: { email: [true, { message: 'Email is not valid.' }] }
+			validate: {
+				email: [true, { message: 'Email is not valid.' }],
+				regex: [
+					regex.EMAIL,
+					{
+						message: 'Sorry, we are unable to validate that email.'
+					}
+				]
+			}
 		}),
 		password: t.string({
 			validate: {
@@ -109,6 +117,46 @@ builder.mutationField('signUp', (t) =>
 					password: await hashPassword(input.password)
 				}
 			});
+
+			await createSession(ironSession, user);
+
+			return user;
+		}
+	})
+);
+
+const LogInInput = builder.inputType('LogInInput', {
+	fields: (t) => ({
+		email: t.string({
+			validate: {
+				email: [true, { message: 'Email is not valid.' }],
+				regex: [
+					regex.EMAIL,
+					{
+						message: 'Sorry, we are unable to validate that email.'
+					}
+				]
+			}
+		}),
+		password: t.string({ validate: { minLength: 8 } })
+	})
+});
+
+builder.mutationField('logIn', (t) =>
+	t.prismaField({
+		type: 'User',
+		skipTypeScopes: true,
+		authScopes: {
+			unauthenticated: true
+		},
+		errors: {
+			types: [ZodError, CodedError]
+		},
+		args: {
+			input: t.arg({ type: LogInInput })
+		},
+		resolve: async (_query, _root, { input }, { ironSession }) => {
+			const user = await authenticate(input.email, input.password);
 
 			await createSession(ironSession, user);
 

@@ -18,8 +18,20 @@ interface Error {
 
 scalar ErrorExtension
 
+input LogInInput {
+  email: String!
+  password: String!
+}
+
 type Mutation {
+  logIn(input: LogInInput!): MutationLogInResult!
   signUp(input: SignUpInput!): MutationSignUpResult!
+}
+
+union MutationLogInResult = CodedError | MutationLogInSuccess | ZodError
+
+type MutationLogInSuccess {
+  data: User!
 }
 
 union MutationSignUpResult = CodedError | MutationSignUpSuccess | ZodError

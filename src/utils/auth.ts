@@ -38,12 +38,12 @@ export const authenticate = async (email: string, password: string): Promise<Use
 
 	// If the email does not exists in the database, reject the authenticate request.
 	if (!user || !user.password) {
-		throw new Error('Email not found.');
+		throw new CodedError('Invalid email or password.');
 	}
 
 	// If the password is invalid, reject the authenticate request.
 	if (!(await verifyPassword(user.password, password))) {
-		throw new Error('Invalid password.');
+		throw new CodedError('Invalid email or password.');
 	}
 
 	// Hash should be in the following form:
@@ -52,7 +52,7 @@ export const authenticate = async (email: string, password: string): Promise<Use
 
 	// This should never practically happen, but in the event that is does we want to error out.
 	if (!costFactorString) {
-		throw new Error('Unknown hash format.');
+		throw new CodedError('Unknown hash format.');
 	}
 
 	// In case the cost factor is updated and the password was hashed with an old cost factor
