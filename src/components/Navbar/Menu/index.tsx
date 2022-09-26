@@ -7,7 +7,7 @@ import { List, X } from 'phosphor-react';
 
 import Avatar from '~/components/ui/Avatar';
 
-import DesktopMenu, { generalMenuItems } from './DesktopMenu';
+import DesktopMenu from './DesktopMenu';
 import MobileMenu from './MobileMenu';
 
 const UserMenu = () => {

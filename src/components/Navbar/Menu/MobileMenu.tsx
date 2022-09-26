@@ -1,14 +1,29 @@
 import React from 'react';
 
+import { gql, useMutation } from '@apollo/client';
 import { Disclosure } from '@headlessui/react';
 
 import Link from '~/components/ui/Link';
+import { useAuthRedirect } from '~/hooks/useAuthRedirect';
 
 import { resources } from '../Resources';
 import { generalMenuItems } from './DesktopMenu';
 import ThemeChanger from './ThemeChanger';
 
 const MobileMenu = () => {
+	const authRedirect = useAuthRedirect();
+	const [logOut] = useMutation(
+		gql`
+			mutation MobileMenuLogoutMutation {
+				logOut
+			}
+		`,
+		{
+			onCompleted() {
+				authRedirect();
+			}
+		}
+	);
 	return (
 		<Disclosure.Panel
 			as="nav"
@@ -19,13 +34,17 @@ const MobileMenu = () => {
 					<Link key={item.name} href={item.href}>
 						<Disclosure.Button
 							as="div"
-							className="block border-b border-neutral-200 bg-white px-5 py-3 text-base text-zinc-500 hover:bg-zinc-100 hover:text-black dark:border-neutral-800 dark:bg-black	dark:hover:bg-neutral-900 dark:hover:text-white "
+							className="block border-b border-neutral-200 bg-white px-5 py-3 text-base text-zinc-500 hover:bg-zinc-100 hover:text-black dark:border-neutral-800 dark:bg-black dark:hover:bg-neutral-900 dark:hover:text-white"
 						>
 							{item.name}
 						</Disclosure.Button>
 					</Link>
 				))}
-
+				<Link className="w-full text-left" onClick={() => logOut()}>
+					<div className="block border-b border-neutral-200 bg-white px-5 py-3 text-base text-zinc-500 hover:bg-zinc-100 hover:text-black dark:border-neutral-800 dark:bg-black	dark:hover:bg-neutral-900 dark:hover:text-white ">
+						Logout
+					</div>
+				</Link>
 				<p className="mt-8 mb-5 px-5 text-lg font-medium text-black dark:text-white">Resources</p>
 				{resources.map((resource) => (
 					<Link key={resource.name} href={resource.href}>

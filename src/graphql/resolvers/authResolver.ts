@@ -8,6 +8,8 @@ import { prisma } from '~/utils/db';
 import regex from '~/utils/regex';
 import { createSession, deleteSession } from '~/utils/sessions';
 
+import { Result } from './ResultResolver';
+
 builder.queryField('viewer', (t) =>
 	t.prismaField({
 		type: 'User',
@@ -161,6 +163,16 @@ builder.mutationField('logIn', (t) =>
 			await createSession(ironSession, user);
 
 			return user;
+		}
+	})
+);
+
+builder.mutationField('logOut', (t) =>
+	t.field({
+		type: Result,
+		resolve: async (_root, _args, { ironSession, session }) => {
+			await deleteSession(ironSession, session);
+			return Result.SUCCESS;
 		}
 	})
 );

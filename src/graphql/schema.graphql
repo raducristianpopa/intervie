@@ -25,6 +25,7 @@ input LogInInput {
 
 type Mutation {
   logIn(input: LogInInput!): MutationLogInResult!
+  logOut: Result!
   signUp(input: SignUpInput!): MutationSignUpResult!
 }
 
@@ -42,6 +43,10 @@ type MutationSignUpSuccess {
 
 type Query {
   viewer: User
+}
+
+enum Result {
+  SUCCESS
 }
 
 input SignUpInput {

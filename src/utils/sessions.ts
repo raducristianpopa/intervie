@@ -52,7 +52,10 @@ export const createSession = async (ironSession: IronSession, user: User): Promi
 	return session;
 };
 
-export const deleteSession = async (ironSession: IronSession, session: Session): Promise<void> => {
+export const deleteSession = async (
+	ironSession: IronSession,
+	session?: Session | null
+): Promise<void> => {
 	// This will empty the session object and sets the cookie header to be sent once the response is sent.
 	// The browser will then remove the cookie automatically.
 	// We do not have to save the session like above, it will automatically be saved.
