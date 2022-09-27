@@ -3,7 +3,7 @@ import { GetServerSideProps } from 'next';
 import SubMenu from '~/components/SubMenu';
 import { authenticatedRoute } from '~/utils/redirects';
 
-const Index = () => {
+const Settings = () => {
 	return (
 		<>
 			<SubMenu />
@@ -13,4 +13,4 @@ const Index = () => {
 
 export const getServerSideProps: GetServerSideProps = authenticatedRoute;
 
-export default Index;
+export default Settings;

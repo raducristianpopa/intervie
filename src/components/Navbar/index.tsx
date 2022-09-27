@@ -24,7 +24,7 @@ export const Navbar = () => {
 	const { data } = useQuery<NavbarQuery>(query);
 
 	return (
-		<nav className="m-auto flex h-16 w-full max-w-[1248px] items-center px-6 text-sm font-light text-zinc-500 [user-select:none]">
+		<nav className="m-auto flex h-16 w-full max-w-[1248px] select-none items-center px-6 text-sm font-light text-zinc-500">
 			<div className="z-[100] flex min-w-0 flex-1 items-center pr-6">
 				<ol className="m-0 flex max-w-full list-none items-center p-0">
 					{/* BEGIN Logo  */}

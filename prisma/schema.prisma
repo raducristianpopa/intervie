@@ -13,6 +13,12 @@ generator pothos {
   provider = "prisma-pothos-types"
 }
 
+enum Plan {
+  Free
+  Standard
+  Enterprise
+}
+
 model User {
   pk Int    @id @default(autoincrement())
   id String @unique @default(uuid()) @db.Uuid
@@ -21,6 +27,7 @@ model User {
   email      String  @unique
   password   String
   isVerified Boolean @default(false)
+  plan       Plan    @default(Free)
 
   registerIp String?
   userAgent  String?
@@ -61,6 +68,21 @@ model PasswordReset {
   userPk Int
 }
 
+enum WorkspaceTypes {
+  Personal
+  Organization
+}
+
+model Workspace {
+  pk Int    @id @default(autoincrement())
+  id String @unique @default(uuid()) @db.Uuid
+
+  type WorkspaceTypes
+
+  openings  Opening @relation(fields: [openingPk], references: [pk])
+  openingPk Int
+}
+
 model Opening {
   pk          Int     @id @default(autoincrement())
   id          String  @unique @default(uuid()) @db.Uuid
@@ -69,6 +91,7 @@ model Opening {
   isArchived  Boolean @default(false)
 
   candidates Candidate[]
+  Workspace  Workspace[]
 }
 
 model Candidate {
