@@ -1,73 +1,81 @@
 type CodedError implements CodedErrorInterface {
-  code: String!
-  message: String!
-  validation: ErrorExtension!
+	code: String!
+	message: String!
+	validation: ErrorExtension!
 }
 
 interface CodedErrorInterface {
-  code: String!
-  message: String!
-  validation: ErrorExtension!
+	code: String!
+	message: String!
+	validation: ErrorExtension!
 }
 
 scalar DateTime
 
 interface Error {
-  message: String!
+	message: String!
 }
 
 scalar ErrorExtension
 
 input LogInInput {
-  email: String!
-  password: String!
+	email: String!
+	password: String!
 }
 
 type Mutation {
-  logIn(input: LogInInput!): MutationLogInResult!
-  logOut: Result!
-  signUp(input: SignUpInput!): MutationSignUpResult!
+	logIn(input: LogInInput!): MutationLogInResult!
+	logOut: Result!
+	signUp(input: SignUpInput!): MutationSignUpResult!
 }
 
 union MutationLogInResult = CodedError | MutationLogInSuccess | ZodError
 
 type MutationLogInSuccess {
-  data: User!
+	data: User!
 }
 
 union MutationSignUpResult = CodedError | MutationSignUpSuccess | ZodError
 
 type MutationSignUpSuccess {
-  data: User!
+	data: User!
 }
 
 type Query {
-  viewer: User
+	viewer: User
+	workspaces: [Workspace!]
 }
 
 enum Result {
-  SUCCESS
+	SUCCESS
 }
 
 input SignUpInput {
-  confirmPassword: String!
-  email: String!
-  name: String!
-  password: String!
+	confirmPassword: String!
+	email: String!
+	name: String!
+	password: String!
 }
 
 type User {
-  email: String!
-  id: ID!
-  name: String!
+	email: String!
+	id: ID!
+	name: String!
+	workspaces: [Workspace!]!
+}
+
+type Workspace {
+	id: ID!
+	name: String!
+	type: String!
 }
 
 type ZodError implements Error {
-  errors: [ZodFieldError!]!
-  message: String!
+	errors: [ZodFieldError!]!
+	message: String!
 }
 
 type ZodFieldError {
-  message: String!
-  path: [String!]!
+	message: String!
+	path: [String!]!
 }

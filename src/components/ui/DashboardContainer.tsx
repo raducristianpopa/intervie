@@ -7,9 +7,9 @@ interface Props {
 const DashboardContainer = ({ children }: Props) => {
 	return (
 		<>
-			<div className="flex min-h-[calc(100vh-(64px))] flex-col justify-center">
-				<div className="relative flex w-full max-w-xl flex-1 flex-col items-center justify-center self-center p-6">
-					{children}
+			<div className="min-h-screen text-sm leading-6">
+				<div className="flex min-h-screen flex-col items-stretch justify-start bg-neutral-100 bg-opacity-70 dark:bg-neutral-900">
+					<div className="mx-auto w-[1248px] max-w-full px-6">{children}</div>
 				</div>
 			</div>
 		</>

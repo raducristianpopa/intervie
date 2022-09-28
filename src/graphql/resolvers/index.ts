@@ -1,2 +1,4 @@
-import './authResolver';
-import './userResolver';
+import './AuthResolver';
+import './ResultResolver';
+import './UserResolver';
+import './WorkspaceResolver';

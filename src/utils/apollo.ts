@@ -26,7 +26,15 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
 					'X-CSRF-Trick': 'Intervie'
 				}
 			}),
-			cache: new InMemoryCache({})
+			cache: new InMemoryCache({
+				typePolicies: {
+					Workspace: {
+						merge(existing = [], incoming) {
+							return [...existing, ...incoming];
+						}
+					}
+				}
+			})
 		});
 	}
 

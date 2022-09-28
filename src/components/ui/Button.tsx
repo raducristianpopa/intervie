@@ -9,7 +9,6 @@ import { Spinner } from './Spinner';
 
 const button = cva(
 	[
-		'border',
 		'px-3',
 		'rounded-lg',
 		'flex',
@@ -26,6 +25,7 @@ const button = cva(
 		variants: {
 			variant: {
 				primary: [
+					'border',
 					// Light theme
 					'bg-black',
 					'text-white',
@@ -40,6 +40,7 @@ const button = cva(
 					'dark:hover:text-white'
 				],
 				secondary: [
+					'border',
 					// Light theme
 					'bg-neutral-100',
 					'bg-opacity-20',
@@ -58,6 +59,7 @@ const button = cva(
 					'dark:hover:text-white'
 				],
 				danger: [
+					'border',
 					'bg-red-600',
 					'text-white',
 					'border-red-600',
@@ -65,6 +67,7 @@ const button = cva(
 					'hover:text-red-600'
 				],
 				success: [
+					'border',
 					'bg-blue-600',
 					'text-white',
 					'border-blue-600',
@@ -74,8 +77,12 @@ const button = cva(
 			},
 			size: {
 				sm: ['h-8', 'text-sm'],
-				lg: ['h-10', 'text-base'],
+				lg: ['h-10', 'text-sm'],
 				xl: ['h-12', 'text-base']
+			},
+			fullWidth: {
+				false: '',
+				true: 'w-full'
 			}
 		},
 		defaultVariants: {
@@ -93,11 +100,15 @@ export interface ButtonProps extends VariantProps<typeof button>, ButtonOrLinkPr
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
-	{ variant, size, isLoading, leftIcon, rightIcon, children, className, ...props },
+	{ variant, size, isLoading, leftIcon, rightIcon, fullWidth, children, className, ...props },
 	ref
 ) {
 	return (
-		<ButtonOrLink className={clsx(className, button({ variant, size }))} {...props} ref={ref}>
+		<ButtonOrLink
+			className={clsx(className, button({ variant, size, fullWidth }))}
+			{...props}
+			ref={ref}
+		>
 			<Transition
 				show={!!isLoading}
 				enter="transition-all"

@@ -36,7 +36,7 @@ const DesktopMenu = () => {
 	return (
 		<div className="py-1">
 			{generalMenuItems.map((item) => (
-				<Menu.Item as="div" key={item.name}>
+				<Menu.Item key={item.name}>
 					<Link href={item.href}>
 						<div className="max-w-full cursor-pointer bg-white py-2 px-5 text-sm	leading-5 text-zinc-500 transition-colors duration-100 ease-linear hover:bg-zinc-100 hover:text-black dark:bg-black dark:hover:bg-neutral-900 dark:hover:text-white">
 							{item.name}

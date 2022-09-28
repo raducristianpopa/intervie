@@ -7,7 +7,7 @@ import LoggedOutScope from './LoggedOutScope';
 import Resources, { ResourcesFragment } from './Resources';
 import { NavbarQuery } from './__generated__/index.generated';
 
-const query = gql`
+export const query = gql`
 	query NavbarQuery {
 		viewer {
 			id

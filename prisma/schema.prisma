@@ -35,8 +35,9 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  Session       Session[]
-  PasswordReset PasswordReset[]
+  session       Session[]
+  passwordReset PasswordReset[]
+  workspace     Workspace[]
 }
 
 model Session {
@@ -78,9 +79,15 @@ model Workspace {
   id String @unique @default(uuid()) @db.Uuid
 
   type WorkspaceTypes
+  name String
 
-  openings  Opening @relation(fields: [openingPk], references: [pk])
-  openingPk Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  opening Opening[]
+
+  owner  User @relation(fields: [userPk], references: [pk], onDelete: Cascade, onUpdate: NoAction)
+  userPk Int
 }
 
 model Opening {
@@ -91,7 +98,9 @@ model Opening {
   isArchived  Boolean @default(false)
 
   candidates Candidate[]
-  Workspace  Workspace[]
+
+  workspace   Workspace @relation(fields: [workspacePk], references: [pk])
+  workspacePk Int
 }
 
 model Candidate {
@@ -102,7 +111,7 @@ model Candidate {
   phone  String?
   resume String?
 
-  Opening   Opening? @relation(fields: [openingPk], references: [pk], onDelete: Cascade, onUpdate: NoAction)
+  opening   Opening? @relation(fields: [openingPk], references: [pk], onDelete: Cascade, onUpdate: NoAction)
   openingPk Int?
 }
 
@@ -112,8 +121,8 @@ model Interview {
   name String
 
   questions     Question[]
-  PreInterview  PreInterview[]
-  PostInterview PostInterview[]
+  preInterview  PreInterview[]
+  postInterview PostInterview[]
 }
 
 model PreInterview {
@@ -132,7 +141,7 @@ model PostInterview {
   instructions String? @db.Text
   active       Boolean @default(true)
 
-  Interview   Interview @relation(fields: [interviewPk], references: [pk], onDelete: Cascade, onUpdate: NoAction)
+  interview   Interview @relation(fields: [interviewPk], references: [pk], onDelete: Cascade, onUpdate: NoAction)
   interviewPk Int       @id
 
   @@index([interviewPk])
@@ -144,7 +153,7 @@ model Question {
   skill    String? @db.VarChar(100)
   duration Int     @db.SmallInt
 
-  QuestionEvaluation QuestionEvaluation[]
+  questionEvaluation QuestionEvaluation[]
 
   interviewId Interview @relation(fields: [interviewPk], references: [pk], onDelete: Cascade, onUpdate: NoAction)
   interviewPk Int
@@ -153,7 +162,7 @@ model Question {
 model QuestionEvaluation {
   content String @db.Text
 
-  Question   Question? @relation(fields: [questionPk], references: [pk], onDelete: Cascade, onUpdate: NoAction)
+  question   Question? @relation(fields: [questionPk], references: [pk], onDelete: Cascade, onUpdate: NoAction)
   questionPk Int
 
   @@id([questionPk])

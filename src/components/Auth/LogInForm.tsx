@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { gql, useMutation } from '@apollo/client';
 import { Envelope } from 'phosphor-react';
