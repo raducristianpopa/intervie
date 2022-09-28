@@ -1,5 +1,3 @@
-import Image from 'next/future/image';
-
 import { TextOnlyLogo } from '../ui/Logo';
 
 const LoggedOutScope = () => {

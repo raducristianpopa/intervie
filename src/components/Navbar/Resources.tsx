@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { gql } from '@apollo/client';
 
 import Link from '~/components/ui/Link';

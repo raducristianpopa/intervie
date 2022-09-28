@@ -8,6 +8,7 @@
 		"forceConsistentCasingInFileNames": true,
 		"noEmit": true,
 		"incremental": true,
+		"noUnusedParameters": true,
 		"esModuleInterop": true,
 		"module": "commonjs",
 		"moduleResolution": "node",

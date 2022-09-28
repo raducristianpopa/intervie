@@ -1,8 +1,8 @@
 import { User } from '@prisma/client';
 import jwt from 'jsonwebtoken';
 
-import { prisma } from './db';
-import { sendEmail } from './email';
+// import { prisma } from './db';
+// import { sendEmail } from './email';
 
 export const ENABLE_EMAIL_VERIFICATION = process.env.ENABLE_EMAIL_VERIFICATION === 'true';
 const APP_NAME = process.env.APP_NAME || '';
