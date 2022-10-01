@@ -13,9 +13,9 @@ const DropdownCreateNew = () => {
 							aria-label="Create new workspace or organization"
 							size="lg"
 							variant="primary"
-							className="min-w-[160px]"
+							className="min-w-[120px] sm:min-w-[160px]"
 						>
-							Create new ...
+							<span className="">Create new ...</span>
 						</Button>
 					</Menu.Button>
 					<Transition
@@ -27,12 +27,12 @@ const DropdownCreateNew = () => {
 						leaveFrom="transform opacity-100 scale-100"
 						leaveTo="transform opacity-0 scale-95"
 					>
-						<Menu.Items className="absolute right-0 mt-2 w-full origin-top-right bg-white shadow-lg dark:bg-black ">
+						<Menu.Items className="absolute right-0 z-50 mt-2 w-full origin-top-right bg-white shadow-lg dark:bg-black ">
 							<div className="m-0 rounded-md border border-neutral-300 border-opacity-50 p-2 text-zinc-500 outline-none">
 								<Menu.Item>
 									<Link
 										className="flex h-10 cursor-pointer items-center rounded-md px-3 font-light outline-none hover:bg-neutral-200 hover:text-black dark:hover:bg-neutral-900 dark:hover:text-white"
-										href="/setting/workspace"
+										href="/add/workspace"
 									>
 										Workspace
 									</Link>

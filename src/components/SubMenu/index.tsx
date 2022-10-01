@@ -2,6 +2,8 @@ import { useRouter } from 'next/router';
 
 import clsx from 'clsx';
 
+import { useApollo } from '~/utils/apollo';
+
 import Link from '../ui/Link';
 
 export interface SubMenuLinksProps {

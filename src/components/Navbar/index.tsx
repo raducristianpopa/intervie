@@ -34,7 +34,6 @@ export const Navbar = () => {
 						</Link>
 					</li>
 					{/* END Logo */}
-
 					{data && (data.viewer ? <LoggedInScope user={data?.viewer} /> : <LoggedOutScope />)}
 				</ol>
 			</div>

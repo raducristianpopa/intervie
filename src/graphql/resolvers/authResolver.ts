@@ -20,6 +20,7 @@ builder.queryField('viewer', (t) =>
 			if (!session?.userPk) {
 				return null;
 			}
+			console.warn('here:', query);
 			return prisma.user.findUniqueOrThrow({
 				...query,
 				where: { pk: session.userPk }

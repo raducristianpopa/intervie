@@ -84,7 +84,7 @@ model Workspace {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  opening Opening[]
+  openings Opening[]
 
   owner  User @relation(fields: [userPk], references: [pk], onDelete: Cascade, onUpdate: NoAction)
   userPk Int

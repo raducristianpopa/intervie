@@ -20,7 +20,7 @@ const LoggedInScope = ({ user }: LoggedInScopeProps) => {
 	return (
 		<>
 			{/* BEGIN Divider */}
-			<li className="ml-2 flex flex-shrink-0 flex-grow-0 basis-auto">
+			<li className="ml-2 flex flex-shrink-0  flex-grow-0 basis-auto">
 				<Divider />
 			</li>
 			{/* END Divider */}
