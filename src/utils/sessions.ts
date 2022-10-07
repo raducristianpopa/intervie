@@ -2,6 +2,7 @@ import { Session, User } from '@prisma/client';
 import { addSeconds, differenceInSeconds } from 'date-fns';
 import { IncomingMessage, ServerResponse } from 'http';
 import { IronSession, IronSessionOptions, getIronSession } from 'iron-session';
+import parser from 'ua-parser-js';
 
 import { prisma } from './db';
 
@@ -36,11 +37,24 @@ const SESSION_OPTIONS: IronSessionOptions = {
 	}
 };
 
-export const createSession = async (ironSession: IronSession, user: User): Promise<Session> => {
+export const createSession = async (
+	ironSession: IronSession,
+	user: User,
+	req: IncomingMessage
+): Promise<Session> => {
+	// Parser the user agent to save data about the session.
+
+	const parsedUserAgent = parser(req.headers['user-agent']);
+
 	const session = await prisma.session.create({
 		data: {
 			userPk: user.pk,
-			expiresAt: addSeconds(new Date(), SESSION_TTL)
+			expiresAt: addSeconds(new Date(), SESSION_TTL),
+			browser: parsedUserAgent.browser.name,
+			browserVersion: parsedUserAgent.browser.version,
+			os: parsedUserAgent.os.name,
+			osVersion: parsedUserAgent.os.version,
+			userAgent: parsedUserAgent.ua
 		}
 	});
 

@@ -9,7 +9,7 @@ export function useAuthRedirect() {
 	const router = useRouter();
 
 	return useCallback(() => {
-		client.resetStore();
+		client.cache.reset();
 		router.push((router.query.redirect as string) ?? '/');
 	}, [client, router]);
 }

@@ -45,7 +45,7 @@ model Session {
   browser        String?
   browserVersion String?
   os             String?
-  platform       String?
+  osVersion      String?
   userAgent      String?
 
   isExpired Boolean  @default(false)

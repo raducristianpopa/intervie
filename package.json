@@ -19,7 +19,7 @@
 		"start": "next start",
 		"lint": "next lint",
 		"dev:docker": "docker compose up",
-		"dev:next": "next dev -H 192.168.1.104",
+		"dev:next": "next dev",
 		"dev:codegen": "pnpm run codegen:graphql -- watch",
 		"prisma:studio": "prisma studio",
 		"prisma:migrate": "prisma migrate dev",
@@ -65,6 +65,7 @@
 		"react-hook-form": "^7.35.0",
 		"react-hot-toast": "^2.4.0",
 		"tailwindcss": "^3.1.8",
+		"ua-parser-js": "^1.0.2",
 		"zod": "^3.19.1"
 	},
 	"devDependencies": {
@@ -81,6 +82,7 @@
 		"@types/nprogress": "^0.2.0",
 		"@types/react": "18.0.20",
 		"@types/react-dom": "18.0.6",
+		"@types/ua-parser-js": "^0.7.36",
 		"concurrently": "^7.4.0",
 		"dotenv": "^16.0.2",
 		"dotenv-cli": "^6.0.0",

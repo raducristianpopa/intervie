@@ -1,4 +1,3 @@
-import { validate } from 'graphql';
 import { ZodError, z } from 'zod';
 
 import { builder } from '~/graphql/builder';
@@ -20,7 +19,6 @@ builder.queryField('viewer', (t) =>
 			if (!session?.userPk) {
 				return null;
 			}
-			console.warn('here:', query);
 			return prisma.user.findUniqueOrThrow({
 				...query,
 				where: { pk: session.userPk }
@@ -106,22 +104,24 @@ builder.mutationField('signUp', (t) =>
 				type: SignUpInput
 			})
 		},
-		resolve: async (_query, _root, { input }, { ironSession }) => {
+		resolve: async (_query, _root, { input }, { req, ironSession }) => {
 			// We verify if the email already exists.
 			await verifyEmail(input.email);
 
-			// We verify if the passwords are the same.
-			// await checkPasswords(input.password, input.confirmPassword)
+			const userAgent = encodeURIComponent(req.headers['user-agent'] || '');
+			const userIp = req.socket.remoteAddress || null;
 
 			const user = await prisma.user.create({
 				data: {
 					name: input.name,
 					email: input.email,
-					password: await hashPassword(input.password)
+					password: await hashPassword(input.password),
+					registerIp: userIp,
+					userAgent: userAgent
 				}
 			});
 
-			await createSession(ironSession, user);
+			await createSession(ironSession, user, req);
 
 			return user;
 		}
@@ -158,10 +158,10 @@ builder.mutationField('logIn', (t) =>
 		args: {
 			input: t.arg({ type: LogInInput })
 		},
-		resolve: async (_query, _root, { input }, { ironSession }) => {
+		resolve: async (_query, _root, { input }, { req, ironSession }) => {
 			const user = await authenticate(input.email, input.password);
 
-			await createSession(ironSession, user);
+			await createSession(ironSession, user, req);
 
 			return user;
 		}

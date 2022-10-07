@@ -27,6 +27,7 @@ specifiers:
   '@types/nprogress': ^0.2.0
   '@types/react': 18.0.20
   '@types/react-dom': 18.0.6
+  '@types/ua-parser-js': ^0.7.36
   autoprefixer: ^10.4.10
   class-variance-authority: ^0.2.3
   clsx: ^1.2.1
@@ -60,6 +61,7 @@ specifiers:
   ts-node: ^10.9.1
   tsconfig-paths: ^4.1.0
   typescript: 4.8.3
+  ua-parser-js: ^1.0.2
   zod: ^3.19.1
 
 dependencies:
@@ -97,6 +99,7 @@ dependencies:
   react-hook-form: 7.35.0_react@18.2.0
   react-hot-toast: 2.4.0_owo25xnefcwdq3zjgtohz6dbju
   tailwindcss: 3.1.8_57znarxsqwmnneadci5z5fd5gu
+  ua-parser-js: 1.0.2
   zod: 3.19.1
 
 devDependencies:
@@ -113,6 +116,7 @@ devDependencies:
   '@types/nprogress': 0.2.0
   '@types/react': 18.0.20
   '@types/react-dom': 18.0.6
+  '@types/ua-parser-js': 0.7.36
   concurrently: 7.4.0
   dotenv: 16.0.2
   dotenv-cli: 6.0.0
@@ -2027,6 +2031,10 @@ packages:
       '@types/mime': 3.0.1
       '@types/node': 18.7.17
     dev: false
+
+  /@types/ua-parser-js/0.7.36:
+    resolution: {integrity: sha512-N1rW+njavs70y2cApeIw1vLMYXRwfBy+7trgavGuuTfOd7j1Yh7QTRc/yqsPl6ncokt72ZXuxEU0PiCp9bSwNQ==}
+    dev: true
 
   /@types/ws/8.5.3:
     resolution: {integrity: sha512-6YOoWjruKj1uLf3INHH7D3qTXwFfEsg1kf3c0uDdSBJwfa/llkwIjrAGV7j7mVgGNbzTQ3HiHKKDXl6bJPD97w==}
@@ -6187,6 +6195,10 @@ packages:
   /ua-parser-js/0.7.31:
     resolution: {integrity: sha512-qLK/Xe9E2uzmYI3qLeOmI0tEOt+TBBQyUIAh4aAgU05FVYzeZrKUdkAZfBNVGRaHVgV0TDkdEngJSw/SyQchkQ==}
     dev: true
+
+  /ua-parser-js/1.0.2:
+    resolution: {integrity: sha512-00y/AXhx0/SsnI51fTc0rLRmafiGOM4/O+ny10Ps7f+j/b8p/ZY11ytMgznXkOVo4GQ+KwQG5UQLkLGirsACRg==}
+    dev: false
 
   /unbox-primitive/1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}
