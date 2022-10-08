@@ -37,10 +37,7 @@ const DropdownCreateNew = () => {
 										Workspace
 									</Link>
 								</Menu.Item>
-								<Link
-									className="flex h-10 cursor-pointer items-center rounded-md px-3 font-light outline-none hover:bg-neutral-200 hover:text-black dark:hover:bg-neutral-900 dark:hover:text-white"
-									href="/add/organization"
-								>
+								<Link className="flex h-10 w-full cursor-not-allowed items-center rounded-md px-3 font-light outline-none hover:bg-neutral-200 hover:text-black dark:hover:bg-neutral-900 dark:hover:text-white">
 									Organization
 								</Link>
 							</div>
