@@ -5,8 +5,8 @@
   </p>
   <h1 align="center"><b>Intervie</b></h1>
   <p align="center">
-    An interview assistant from the future.<br />
-    <a href="https://github.com/intervieapp"><strong>intervie »</strong></a>
+    A promising interviewer's assistant. <br />
+    <a href="https://intervie.org"><strong>intervie »</strong></a>
   </p>
 </p>
 
