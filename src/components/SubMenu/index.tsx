@@ -2,8 +2,6 @@ import { useRouter } from 'next/router';
 
 import clsx from 'clsx';
 
-import { useApollo } from '~/utils/apollo';
-
 import Link from '../ui/Link';
 
 export interface SubMenuLinksProps {
@@ -17,6 +15,8 @@ interface Props {
 
 const SubMenu = ({ links }: Props) => {
 	const router = useRouter();
+	const basePath =
+		router.pathname.length > 1 ? `/${router.pathname.split('/')[1]}` : router.pathname;
 
 	return (
 		<>
@@ -30,7 +30,7 @@ const SubMenu = ({ links }: Props) => {
 										key={link.name}
 										href={link.href}
 										className={clsx(
-											router.pathname === link.href
+											basePath === link.href
 												? 'font-normal text-black after:absolute after:bottom-0 after:left-[10px] after:right-[10px] after:block after:h-0 after:border-b-2 after:border-black dark:text-white dark:after:border-white'
 												: 'hover:text-black dark:hover:text-white',
 											'relative inline-block select-none py-4 px-3 outline-0 transition-colors duration-200 ease-linear '

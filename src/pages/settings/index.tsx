@@ -1,15 +1,7 @@
 import { GetServerSideProps } from 'next';
 
-import Link from '~/components/ui/Link';
+import Settings from '~/components/Settings';
 import { authenticatedRoute } from '~/utils/redirects';
-
-const Settings = () => {
-	return (
-		<>
-			<Link href="/">backs</Link>
-		</>
-	);
-};
 
 export const getServerSideProps: GetServerSideProps = authenticatedRoute;
 
