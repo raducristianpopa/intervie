@@ -3,10 +3,11 @@ import { ReactElement, ReactNode } from 'react';
 import { NextPage } from 'next';
 
 import type { AppProps } from 'next/app';
+import Head from 'next/head';
 
 import { ApolloProvider } from '@apollo/client';
 import { ThemeProvider } from 'next-themes';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 
 import Navbar from '~/components/Navbar';
 import { NProgress } from '~/components/ui/NProgress';
@@ -27,19 +28,24 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
 	const getLayout = Component.getLayout ?? ((page) => page);
 
 	return (
-		<ApolloProvider client={client}>
-			<ThemeProvider
-				storageKey="preferred-theme"
-				defaultTheme="system"
-				attribute="class"
-				enableSystem
-			>
-				<NProgress />
-				<Navbar />
-				{getLayout(<Component {...pageProps} />)}
-				<Toaster position="top-center" />
-			</ThemeProvider>
-		</ApolloProvider>
+		<>
+			<Head>
+				<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+			</Head>
+			<ApolloProvider client={client}>
+				<ThemeProvider
+					storageKey="preferred-theme"
+					defaultTheme="system"
+					attribute="class"
+					enableSystem
+				>
+					<NProgress />
+					<Navbar />
+					{getLayout(<Component {...pageProps} />)}
+					<Toaster position="top-center" />
+				</ThemeProvider>
+			</ApolloProvider>
+		</>
 	);
 };
 export default App;
