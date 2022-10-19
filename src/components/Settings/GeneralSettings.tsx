@@ -118,7 +118,14 @@ const GeneralSettings = () => {
 					<Button aria-label="Dismiss" variant="primary" onClick={() => toast.dismiss(t.id)}>
 						Dismiss
 					</Button>
-					<Button aria-label="Dismiss" variant="danger" onClick={() => deletePersonalAccount()}>
+					<Button
+						aria-label="Dismiss"
+						variant="danger"
+						onClick={() => {
+							deletePersonalAccount();
+							toast.dismiss(t.id);
+						}}
+					>
 						Delete personal account
 					</Button>
 				</div>
