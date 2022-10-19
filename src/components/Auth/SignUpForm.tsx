@@ -121,6 +121,7 @@ const SignUpForm = () => {
 						size="xl"
 						type="submit"
 						leftIcon={<Envelope size={24} />}
+						fullWidth
 					>
 						Continue with Email
 					</Button>

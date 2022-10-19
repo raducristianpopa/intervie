@@ -1,6 +1,7 @@
 import { ComponentProps } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import clsx from 'clsx';
 import {
 	FieldValues,
 	FormProvider,
@@ -21,6 +22,7 @@ interface UseZodFormProps<T extends ZodSchema<any>> extends UseFormProps<TypeOf<
 interface FormProps<T extends FieldValues = any> extends Omit<ComponentProps<'form'>, 'onSubmit'> {
 	form: UseFormReturn<T>;
 	onSubmit: SubmitHandler<T>;
+	small?: boolean;
 }
 
 export const useZodForm = <T extends ZodSchema<any>>({
@@ -38,6 +40,7 @@ export const Form = <T extends FieldValues>({
 	form,
 	onSubmit,
 	children,
+	small,
 	...props
 }: FormProps<T>) => {
 	// This is a custom submit handler so we will not have to do the same operations
@@ -88,7 +91,10 @@ export const Form = <T extends FieldValues>({
 	return (
 		<FormProvider {...form}>
 			<form onSubmit={form.handleSubmit(submitHandler)} {...props}>
-				<fieldset className="flex flex-col space-y-4" disabled={form.formState.isSubmitting}>
+				<fieldset
+					className={(clsx('flex flex-col'), small ? '' : 'space-y-4')}
+					disabled={form.formState.isSubmitting}
+				>
 					{children}
 				</fieldset>
 			</form>

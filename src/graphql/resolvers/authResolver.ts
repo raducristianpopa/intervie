@@ -31,11 +31,20 @@ const SignUpInput = builder.inputType('SignUpInput', {
 	fields: (t) => ({
 		name: t.string({
 			validate: {
-				minLength: [5, { message: 'Use 5 characters or more for your name.' }],
-				maxLength: [100, { message: 'Use 100 characters or fewer for your name.' }],
+				minLength: [
+					5,
+					{ message: 'Use 5 characters or more for your name.' }
+				],
+				maxLength: [
+					100,
+					{ message: 'Use 100 characters or fewer for your name.' }
+				],
 				regex: [
 					regex.ONLY_ALPHA_SPACES,
-					{ message: 'Please only use only [A-Z], [a-z] characters and whitespaces.' }
+					{
+						message:
+							'Please only use only [A-Z], [a-z] characters and whitespaces.'
+					}
 				]
 			}
 		}),
@@ -52,8 +61,17 @@ const SignUpInput = builder.inputType('SignUpInput', {
 		}),
 		password: t.string({
 			validate: {
-				minLength: [8, { message: 'Use 8 characters or more for your password.' }],
-				maxLength: [255, { message: 'Use 100 characters or fewer for your password.' }],
+				minLength: [
+					8,
+					{ message: 'Use 8 characters or more for your password.' }
+				],
+				maxLength: [
+					255,
+					{
+						message:
+							'Use 100 characters or fewer for your password.'
+					}
+				],
 				schema: z
 					.string()
 					.regex(regex.MIN_ONE_UPPERCASE, {
@@ -76,8 +94,17 @@ const SignUpInput = builder.inputType('SignUpInput', {
 		}),
 		confirmPassword: t.string({
 			validate: {
-				minLength: [8, { message: 'Use 8 characters or more for your password.' }],
-				maxLength: [255, { message: 'Use 100 characters or fewer for your password.' }]
+				minLength: [
+					8,
+					{ message: 'Use 8 characters or more for your password.' }
+				],
+				maxLength: [
+					255,
+					{
+						message:
+							'Use 100 characters or fewer for your password.'
+					}
+				]
 			}
 		})
 	}),
@@ -108,7 +135,9 @@ builder.mutationField('signUp', (t) =>
 			// We verify if the email already exists.
 			await verifyEmail(input.email);
 
-			const userAgent = encodeURIComponent(req.headers['user-agent'] || '');
+			const userAgent = encodeURIComponent(
+				req.headers['user-agent'] || ''
+			);
 			const userIp = req.socket.remoteAddress || null;
 
 			const user = await prisma.user.create({

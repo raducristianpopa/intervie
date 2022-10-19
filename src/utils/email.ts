@@ -5,8 +5,12 @@ const POSTMARK_FROM_EMAIL = process.env.POSTMARK_FROM_EMAIL || '';
 const POSTMARK_SERVER_API_TOKEN = process.env.POSTMARK_SERVER_API_TOKEN || '';
 
 if (!POSTMARK_SERVER_API_TOKEN) {
-	console.warn('You have not configured a `POSTMARK_SERVER_API_TOKEN` environment variable.');
-	console.warn('Sending emails will be disabled, and they will only be printed to the console.');
+	console.warn(
+		'You have not configured a `POSTMARK_SERVER_API_TOKEN` environment variable.'
+	);
+	console.warn(
+		'Sending emails will be disabled, and they will only be printed to the console.'
+	);
 }
 
 interface Email {

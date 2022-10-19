@@ -7,7 +7,9 @@ const regex = {
 	MIN_ONE_UPPERCASE: new RegExp(/^.*[a-z].*$/),
 	MIN_ONE_LOWERCASE: new RegExp(/^.*[A-Z].*$/),
 	MIN_ONE_NUMERIC: new RegExp(/^.*\d.*$/),
-	MIN_ONE_SPECIAL: new RegExp(/^.*[`~<>?,\./!@#$%^&*()\-_+=\"'|{}\[\];:\\].*$/)
+	MIN_ONE_SPECIAL: new RegExp(
+		/^.*[`~<>?,\./!@#$%^&*()\-_+=\"'|{}\[\];:\\].*$/
+	)
 };
 
 export default regex;

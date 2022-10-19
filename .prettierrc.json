@@ -7,6 +7,22 @@
 	"trailingComma": "none",
 	"singleQuote": true,
 	"quoteProps": "consistent",
+	"overrides": [
+		{
+			"files": ["**/*.ts"],
+			"options": {
+				"tabWidth": 4,
+				"printWidth": 80
+			}
+		},
+		{
+			"files": ["**/*.tsx"],
+			"options": {
+				"tabWidth": 2,
+				"printWidth": 100
+			}
+		}
+	],
 	"importOrder": [
 		"^react$",
 		"^next$",

@@ -11,7 +11,9 @@ export async function authenticatedRoute(
 	if (!session) {
 		return {
 			redirect: {
-				destination: `${redirect}?redirect=${encodeURIComponent(ctx.resolvedUrl)}`,
+				destination: `${redirect}?redirect=${encodeURIComponent(
+					ctx.resolvedUrl
+				)}`,
 				permanent: false
 			}
 		};
@@ -22,7 +24,10 @@ export async function authenticatedRoute(
 	};
 }
 
-export async function unauthenticatedRoute(ctx: GetServerSidePropsContext, redirect: string = '/') {
+export async function unauthenticatedRoute(
+	ctx: GetServerSidePropsContext,
+	redirect: string = '/'
+) {
 	const { session } = await resolveSession(ctx.req, ctx.res);
 
 	if (session) {

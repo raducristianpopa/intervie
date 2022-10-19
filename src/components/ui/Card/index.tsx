@@ -1,14 +1,22 @@
 import { ReactNode } from 'react';
 
+import clsx from 'clsx';
+
 interface Props {
 	title?: string;
 	children: ReactNode;
+	variant?: 'danger';
 }
 
-const Card = ({ title, children }: Props) => {
+const Card = ({ title, children, variant }: Props) => {
 	return (
-		<div className="relative rounded-md border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-black">
-			<div className="flex flex-col space-y-4 p-6">
+		<div
+			className={clsx(
+				'relative rounded-md border border-neutral-200 bg-white  dark:bg-black',
+				variant === 'danger' ? 'border-red-600' : 'border-neutral-200 dark:border-neutral-800'
+			)}
+		>
+			<div className="flex flex-col p-6">
 				<h4 className="text-2xl font-medium ">{title}</h4>
 				{children}
 			</div>

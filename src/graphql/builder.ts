@@ -59,7 +59,13 @@ export const builder = new SchemaBuilder<{
 	// Define the shape of the auth scopes that we'll be using:
 }>({
 	defaultInputFieldRequiredness: true,
-	plugins: [SimpleObjectsPlugin, ScopeAuthPlugin, ErrorsPlugin, ValidationPlugin, PrismaPlugin],
+	plugins: [
+		SimpleObjectsPlugin,
+		ScopeAuthPlugin,
+		ErrorsPlugin,
+		ValidationPlugin,
+		PrismaPlugin
+	],
 	authScopes: async ({ session }) => ({
 		public: true,
 		user: !!session,
@@ -111,10 +117,12 @@ function flattenErrors(
 	Object.keys(error).forEach((key) => {
 		if (key !== '_errors') {
 			errors.push(
-				...flattenErrors((error as Record<string, unknown>)[key] as ZodFormattedError<unknown>, [
-					...path,
-					key
-				])
+				...flattenErrors(
+					(error as Record<string, unknown>)[
+						key
+					] as ZodFormattedError<unknown>,
+					[...path, key]
+				)
 			);
 		}
 	});
@@ -128,13 +136,15 @@ const ErrorInterface = builder.interfaceRef<Error>('Error').implement({
 	})
 });
 
-const CodedErrorInterface = builder.interfaceRef<CodedError>('CodedErrorInterface').implement({
-	fields: (t) => ({
-		code: t.exposeString('code'),
-		message: t.exposeString('message'),
-		validation: t.expose('validation', { type: 'ErrorExtension' })
-	})
-});
+const CodedErrorInterface = builder
+	.interfaceRef<CodedError>('CodedErrorInterface')
+	.implement({
+		fields: (t) => ({
+			code: t.exposeString('code'),
+			message: t.exposeString('message'),
+			validation: t.expose('validation', { type: 'ErrorExtension' })
+		})
+	});
 
 builder.objectType(CodedError, {
 	name: 'CodedError',

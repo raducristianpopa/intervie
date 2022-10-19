@@ -2,7 +2,13 @@ import { useMemo } from 'react';
 
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
 
-import { ApolloClient, ApolloError, HttpLink, InMemoryCache, QueryOptions } from '@apollo/client';
+import {
+	ApolloClient,
+	ApolloError,
+	HttpLink,
+	InMemoryCache,
+	QueryOptions
+} from '@apollo/client';
 
 let apolloClient: ApolloClient<any>;
 
@@ -19,7 +25,10 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
 			ssrMode: typeof window === 'undefined',
 			credentials: 'include',
 			link: new HttpLink({
-				uri: typeof window === 'undefined' ? 'http://localhost:3000/api/graphql' : '/api/graphql',
+				uri:
+					typeof window === 'undefined'
+						? 'http://localhost:3000/api/graphql'
+						: '/api/graphql',
 				headers: {
 					...headers,
 					// CSRF Trick Verification Header
@@ -27,6 +36,12 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
 				}
 			}),
 			cache: new InMemoryCache({
+				dataIdFromObject: (object) => {
+					switch (object.__typename) {
+						case 'User':
+							return `${object.__typename}:current`;
+					}
+				},
 				typePolicies: {
 					Workspace: {
 						merge(existing = [], incoming) {
@@ -34,7 +49,8 @@ export function createApolloClient({ initialState, headers }: ClientOptions) {
 						}
 					}
 				}
-			})
+			}),
+			connectToDevTools: true
 		});
 	}
 
@@ -67,8 +83,11 @@ export async function preloadQuery(
 	});
 
 	try {
-		await Promise.all(queries.map((queryOptions) => client.query(queryOptions)));
-
+		await Promise.all(
+			queries.map((queryOptions) => {
+				client.query(queryOptions);
+			})
+		);
 		return {
 			props: {
 				initialClientState: client.cache.extract()
@@ -96,8 +115,27 @@ export async function preloadQuery(
 	}
 }
 
+export function initializeApollo(initialState = null) {
+	const _apolloClient = apolloClient ?? createApolloClient({});
+
+	// If your page has Next.js data fetching methods that use Apollo Client, the initial state
+	// gets hydrated here
+	if (initialState) {
+		_apolloClient.cache.restore(initialState);
+	}
+	// For SSG and SSR always create a new Apollo Client
+	if (typeof window === 'undefined') return _apolloClient;
+	// Create the Apollo Client once in the client
+	if (!apolloClient) apolloClient = _apolloClient;
+
+	return _apolloClient;
+}
+
 export function useApollo(initialState?: Record<string, any>) {
-	const client = useMemo(() => createApolloClient({ initialState }), [initialState]);
+	const client = useMemo(
+		() => createApolloClient({ initialState }),
+		[initialState]
+	);
 
 	return client;
 }

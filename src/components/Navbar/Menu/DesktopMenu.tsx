@@ -8,6 +8,7 @@ import Link from '~/components/ui/Link';
 import { useAuthRedirect } from '~/hooks/useAuthRedirect';
 
 import ThemeChanger from './ThemeChanger';
+import { DesktopMenuLogoutMutation } from './__generated__/DesktopMenu.generated';
 
 interface MenuItemProps {
 	name: string;
@@ -21,7 +22,7 @@ export const generalMenuItems: MenuItemProps[] = [
 
 const DesktopMenu = () => {
 	const authRedirect = useAuthRedirect();
-	const [logOut] = useMutation(
+	const [logOut] = useMutation<DesktopMenuLogoutMutation>(
 		gql`
 			mutation DesktopMenuLogoutMutation {
 				logOut

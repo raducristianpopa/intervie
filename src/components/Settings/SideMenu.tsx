@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 
 import clsx from 'clsx';
 import { CaretLeft } from 'phosphor-react';
+import { string } from 'zod';
 
 import Link from '../ui/Link';
 
@@ -12,6 +13,7 @@ interface Props {
 interface SidebarLinkProps {
 	name: string;
 	href: string;
+	secondaryHref?: string;
 	default?: boolean;
 }
 
@@ -19,6 +21,7 @@ const sidebarLinks: SidebarLinkProps[] = [
 	{
 		name: 'General',
 		href: '/settings/general',
+		secondaryHref: '/settings',
 		default: true
 	},
 	{
@@ -57,7 +60,7 @@ const SideMenu = ({ hasTab }: Props) => {
 							className={clsx(
 								link.href === router.pathname && 'font-light text-black dark:text-white',
 								link.default &&
-									link.href === router.pathname &&
+									link.secondaryHref === router.pathname &&
 									'font-light text-black dark:text-white',
 								'borde,r-b block cursor-pointer items-center border-neutral-200 px-8 py-4 outline-none dark:border-neutral-800 md:flex md:h-10 md:rounded-md md:border-0 md:px-3 md:py-0 md:hover:bg-neutral-200 md:hover:text-black dark:md:hover:bg-neutral-900 dark:md:hover:text-white'
 							)}

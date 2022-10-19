@@ -136,7 +136,8 @@ export const resolveSession = async (
 				// If we resolve a session in the request, we will automatically renew it
 				// if 50% of the session elapsed
 				const shouldRefreshSession =
-					differenceInSeconds(session.expiresAt, new Date()) < 0.5 * SESSION_TTL;
+					differenceInSeconds(session.expiresAt, new Date()) <
+					0.5 * SESSION_TTL;
 
 				if (shouldRefreshSession) {
 					await prisma.session.update({

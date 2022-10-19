@@ -24,9 +24,11 @@ input LogInInput {
 }
 
 type Mutation {
+  deletePersonalAccount: Result!
   logIn(input: LogInInput!): MutationLogInResult!
   logOut: Result!
   signUp(input: SignUpInput!): MutationSignUpResult!
+  updateName(input: UpdateNameInput!): MutationUpdateNameResult!
 }
 
 union MutationLogInResult = CodedError | MutationLogInSuccess | ZodError
@@ -38,6 +40,12 @@ type MutationLogInSuccess {
 union MutationSignUpResult = CodedError | MutationSignUpSuccess | ZodError
 
 type MutationSignUpSuccess {
+  data: User!
+}
+
+union MutationUpdateNameResult = CodedError | MutationUpdateNameSuccess | ZodError
+
+type MutationUpdateNameSuccess {
   data: User!
 }
 
@@ -55,6 +63,10 @@ input SignUpInput {
   email: String!
   name: String!
   password: String!
+}
+
+input UpdateNameInput {
+  name: String!
 }
 
 type User {

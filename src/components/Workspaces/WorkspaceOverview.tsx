@@ -3,7 +3,7 @@ import { gql, useQuery } from '@apollo/client';
 import WorkspaceCard from './WorkspaceCard';
 import { WorkspacesQuery } from './__generated__/WorkspaceOverview.generated';
 
-const query = gql`
+export const query = gql`
 	query WorkspacesQuery {
 		workspaces {
 			id

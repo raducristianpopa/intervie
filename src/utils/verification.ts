@@ -4,20 +4,26 @@ import jwt from 'jsonwebtoken';
 // import { prisma } from './db';
 // import { sendEmail } from './email';
 
-export const ENABLE_EMAIL_VERIFICATION = process.env.ENABLE_EMAIL_VERIFICATION === 'true';
+export const ENABLE_EMAIL_VERIFICATION =
+	process.env.ENABLE_EMAIL_VERIFICATION === 'true';
 const APP_NAME = process.env.APP_NAME || '';
 const JWT_SECRET = process.env.JWT_SECRET || '';
 
 // If deployed to Vercel, an enviroment variable will be set for us to access
 // the application.
-export const PUBLIC_URL = process.env.PUBLIC_URL || process.env.VERCEL_URL || '';
+export const PUBLIC_URL =
+	process.env.PUBLIC_URL || process.env.VERCEL_URL || '';
 
 if (!JWT_SECRET) {
-	console.warn('No `JWT_SECRET` environment variable was set. This can cause production errors.');
+	console.warn(
+		'No `JWT_SECRET` environment variable was set. This can cause production errors.'
+	);
 }
 
 if (!PUBLIC_URL) {
-	console.warn('No `PUBLIC_URL` environment variable was set. This can cause production errors.');
+	console.warn(
+		'No `PUBLIC_URL` environment variable was set. This can cause production errors.'
+	);
 }
 
 if (!APP_NAME) {

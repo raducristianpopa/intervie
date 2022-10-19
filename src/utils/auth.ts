@@ -22,11 +22,17 @@ export const hashPassword = async (password: string): Promise<string> => {
 	return key;
 };
 
-export const verifyPassword = async (hash: string, password: string): Promise<boolean> => {
+export const verifyPassword = async (
+	hash: string,
+	password: string
+): Promise<boolean> => {
 	return bcryptVerify({ password, hash });
 };
 
-export const authenticate = async (email: string, password: string): Promise<User> => {
+export const authenticate = async (
+	email: string,
+	password: string
+): Promise<User> => {
 	const user = await prisma.user.findFirst({
 		where: {
 			email: {
@@ -95,6 +101,8 @@ export async function verifyEmail(email: string): Promise<void> {
 	}));
 
 	if (emailExists) {
-		throw new CodedError('We are sorry for this.\n The email you provided already exists.');
+		throw new CodedError(
+			'We are sorry for this.\n The email you provided already exists.'
+		);
 	}
 }

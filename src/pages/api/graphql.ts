@@ -52,7 +52,8 @@ const handler: NextApiHandler = async (req, res) => {
 				})
 			);
 		} else {
-			const { operationName, query, variables } = getGraphQLParameters(request);
+			const { operationName, query, variables } =
+				getGraphQLParameters(request);
 
 			const result = await processRequest<Context>({
 				operationName,
@@ -60,14 +61,17 @@ const handler: NextApiHandler = async (req, res) => {
 				variables,
 				request,
 				schema,
-				contextFactory: () => createGraphQLContext(req, res, ironSession, session)
+				contextFactory: () =>
+					createGraphQLContext(req, res, ironSession, session)
 			});
 
 			if (result.type !== 'RESPONSE') {
 				throw new Error(`Unsupported response type: "${result.type}"`);
 			}
 
-			result.headers.forEach(({ name, value }) => res.setHeader(name, value));
+			result.headers.forEach(({ name, value }) =>
+				res.setHeader(name, value)
+			);
 			res.status(result.status);
 			res.json(result.payload);
 		}

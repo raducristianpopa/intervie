@@ -18,7 +18,7 @@ interface Props {
 
 const Settings = ({ tab }: Props) => {
 	const tabIsSet = !!tab;
-	console.log(tabIsSet);
+
 	return (
 		<>
 			<SubMenu links={links} />
@@ -38,21 +38,7 @@ const Settings = ({ tab }: Props) => {
 							'ml-0 mt-6 flex-1 flex-col items-stretch justify-start md:ml-4 md:mt-0'
 						)}
 					>
-						<main>
-							<section>
-								{tabIsSet ? tab : <GeneralSettings />}
-								{/* <Card title="Your name">
-									<form>
-										<div className="mb-12">test</div>
-										<CardFooter status="status">
-											<Button aria-label="Save name" variant="primary" size="lg">
-												Save
-											</Button>
-										</CardFooter>
-									</form>
-								</Card> */}
-							</section>
-						</main>
+						<main>{tabIsSet ? tab : <GeneralSettings />}</main>
 					</div>
 				</div>
 			</DashboardContainer>

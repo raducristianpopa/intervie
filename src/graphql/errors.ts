@@ -7,7 +7,10 @@ export class CodedError extends Error {
 		  }
 		| {};
 
-	constructor(message: string, properties: { path: string; message: string } | {} = {}) {
+	constructor(
+		message: string,
+		properties: { path: string; message: string } | {} = {}
+	) {
 		super(message);
 
 		this.name = 'Coded error';
